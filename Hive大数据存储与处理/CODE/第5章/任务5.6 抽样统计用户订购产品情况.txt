@@ -1,0 +1,25 @@
+代码5-16 创建桶表
+CREATE TABLE order_index_bucket(
+ phone_no string,
+ prodname string,
+ offerid string,
+ offername string,
+ business_name string,
+ orderno string)
+ CLUSTERED BY(phone_no) INTO 4 BUCKETS
+ ROW FORMAT DELIMITED
+ FIELDS TERMINATED BY ',';
+
+代码5-17 向桶表中插入数据
+INSERT OVERWRITE TABLE order_index_bucket
+ SELECT phone_no,prodname,offerid,offername,business_name,orderno
+ FROM order_index;
+
+代码5-18 抽取第3个桶的数据
+SELECT * FROM order_index_bucket
+ TABLESAMPLE(BUCKET 3 OUT OF 4 ON phone_no);
+
+代码5-19 统计每个桶中数据条数
+SELECT COUNT(*) FROM order_index_bucket
+ TABLESAMPLE(BUCKET 1 OUT OF 4 ON phone_no);
+

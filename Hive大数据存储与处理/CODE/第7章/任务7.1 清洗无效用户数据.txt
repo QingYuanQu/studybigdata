@@ -1,0 +1,69 @@
+代码7-1  探索用户基本数据表中重复记录的用户
+# 统计用户基本数据表中用户记录数大于1的个数
+SELECT phone_no,COUNT(1) AS nums
+FROM mediamatch_usermsg
+GROUP BY phone_no
+HAVING nums > 1;
+
+# 分组统计每个phone_no的记录数，并按记录数降序排列，取前10条数据
+SELECT phone_no,COUNT(1) AS nums
+FROM mediamatch_usermsg
+GROUP BY phone_no
+ORDER BY nums DESC LIMIT 10;
+
+
+代码7-2  统计各表owner_code字段值
+SELECT owner_code,COUNT(1) FROM mediamatch_usermsg GROUP BY owner_code;
+SELECT owner_code,COUNT(1) FROM mediamatch_userevent GROUP BY owner_code;
+SELECT owner_code,COUNT(1) FROM mmconsume_billevents GROUP BY owner_code;
+SELECT owner_code,COUNT(1) FROM order_index GROUP BY owner_code;
+SELECT owner_code,COUNT(1) FROM media_index GROUP BY owner_code;
+
+
+代码7-3  统计各表中owner_name字段值
+SELECT owner_name,COUNT(1) FROM mediamatch_usermsg GROUP BY owner_name;
+SELECT owner_name,COUNT(1) FROM mediamatch_userevent GROUP BY owner_name;
+SELECT owner_name,COUNT(1) FROM mmconsume_billevents GROUP BY owner_name;
+SELECT owner_name,COUNT(1) FROM order_index GROUP BY owner_name;
+SELECT owner_name,COUNT(1) FROM media_index GROUP BY owner_name;
+
+
+代码7-4  统计用户基本数据表的总记录数
+# 统计总记录数
+SELECT COUNT(*) FROM mediamatch_usermsg;
+
+
+代码7-5  统计用户基本数据表的sm_name字段各值的数量及其占比
+# 统计用户基本数据中sm_name字段各值的数量及其占比
+SELECT sm_name,COUNT(1) AS sm_nums,(COUNT(1)/100000) AS sm_percent
+FROM mediamatch_usermsg
+GROUP BY sm_name;
+
+
+代码7-6  统计用户基本数据表中run_name字段各值的记录数
+# 统计用户基本数据表中run_name字段的各值的记录数
+SELECT run_name,COUNT(1)
+FROM mediamatch_usermsg
+GROUP BY run_name;
+
+
+代码7-7  清洗用户基本数据表中的数据
+# 清洗用户基本数据表中的数据
+CREATE TABLE IF NOT EXISTS mediamatch_usermsg_clean
+AS 
+SELECT * FROM mediamatch_usermsg 
+WHERE 
+owner_code NOT IN ("02","09","10")
+AND 
+owner_name NOT IN ("EA级","EB级","EC级","ED级","EE级") 
+AND
+sm_name IN ("数字电视","互动电视","珠江宽频","甜果电视")
+AND 
+run_name IN ("正常","欠费暂停","主动暂停","主动销户");
+
+
+代码7-8  验证mediamatch_usermsg_clean表中数据是否有效
+# 验证mediamatch_usermsg_clean表中数据是否有效
+SELECT sm_name,COUNT(1) FROM mediamatch_usermsg_clean GROUP BY sm_name;
+
+

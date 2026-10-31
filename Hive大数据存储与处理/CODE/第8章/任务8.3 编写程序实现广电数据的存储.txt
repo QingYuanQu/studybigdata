@@ -1,0 +1,121 @@
+代码8-6  使用JDBC连接Hive
+import java.sql. *;
+import java.util.ArrayList;
+import java.util.List;
+public class HiveHelper {
+    private static String driverName="org.apache.hive.jdbc.HiveDriver";
+    private static String url="jdbc:hive2://master:10000/DEFAULT";
+    private Connection conn=null;
+    private static String username="root";
+    private static String password="123456";
+    private Statement stmt=null;
+    private ResultSet rs=null;
+    /**
+     * 获取连接
+     */
+    public Connection getConn() throws ClassNotFoundException, SQLException {  //使用异常处理或抛出异常
+        if (null==conn)
+        {
+            Class.forName(driverName);
+            conn=DriverManager.getConnection(url,username,password);
+        }
+        return conn;
+    }
+    /**
+     * 关闭连接
+     */
+    public void close() {
+        try {
+            if (null != conn && !conn.isClosed())
+                conn.close();
+        } catch(SQLException e){
+            e.printStackTrace();
+        }finally {
+            conn=null;
+        }
+}
+//......（其他数据库操作）
+}
+
+
+代码8-7  HiveTest类
+public class HiveTest {
+    public static void main(String[] args) {
+        String dbName="ZJSM2";
+        String localFile2="/opt/data/mediamatch_userevent.csv";
+        String tbName2 = "mediamatch_userevent";
+        HiveHelper helper=new HiveHelper();
+        //1.创建广电用户数据库
+        helper.createDatabase(dbName);
+        //2.1 创建用户基本数据表
+        helper.createTable1(dbName);
+        //2.2 创建用户状态变更数据表
+        helper.createTable2(dbName);
+        //2.3 创建账单数据表
+        helper.createTable3(dbName);
+        //2.4 创建订单数据表
+        helper.createTable4(dbName);
+        //2.5 创建用户收视行为数据表
+        helper.createTable5(dbName);
+        //3 加载CSV数据至用户状态变更数据表
+        helper.loadData(localFile2,tbName2);
+        //4 显示表内容
+        helper.selectAll(tbName2);
+    }
+}
+
+
+代码8-8  创建数据库
+/**
+     * 创建数据库
+     */
+    public void createDatabase(String dbName){
+        try {
+            stmt=getConn().createStatement();
+            stmt.execute("CREATE DATABASE IF NOT EXISTS "+dbName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+代码8-9  创建表
+    public void createTable1(String dbName){
+        try {
+            stmt=getConn().createStatement();
+            stmt.execute("USE "+dbName);
+            String sql;
+            sql = "CREATE TABLE IF NOT EXISTS mediamatch_userevent(\n" +
+                    "phone_no STRING,\n" +
+                    "run_name STRING,\n" +
+                    "run_time STRING,\n" +
+                    "owner_name STRING,\n" +
+                    "owner_code STRING,\n" +
+                    "open_time STRING)\n" +
+                    "ROW FORMAT DELIMITED FIELDS TERMINATED BY ';'";
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+代码8-10  装载数据
+    public void loadData(String localFile,String tbName){
+        String sql= " LOAD DATA LOCAL INPATH '"+ localFile +"' OVERWRITE INTO TABLE "+tbName;
+        System.out.print(sql);
+        try {
+            stmt=getConn().createStatement();
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+

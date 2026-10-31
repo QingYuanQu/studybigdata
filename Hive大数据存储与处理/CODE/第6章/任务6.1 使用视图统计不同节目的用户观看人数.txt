@@ -1,0 +1,23 @@
+代码6-1  创建media_index_time_view视图
+CREATE VIEW IF NOT EXISTS media_index_time_view (
+phone_no,
+station_name,
+origin_time,
+end_time)
+AS SELECT phone_no, station_name, origin_time,end_time FROM media_index;
+
+
+代码6-2  查询media_index_time_view视图的前10行数据
+SELECT * FROM media_index_time_view LIMIT 10;
+
+
+代码6-3  创建视图media_index_type_view
+CREATE VIEW IF NOT EXISTS media_index_type_view (
+phone_no,
+res_type)
+AS SELECT phone_no, res_type FROM media_index;
+
+
+代码6-4  统计不同媒体节目类型的用户观看人数
+# 使用视图统计不同节目的用户观看人数
+SELECT res_type,COUNT(DISTINCT phone_no) as user_Number FROM media_index_type_view GROUP BY res_type;

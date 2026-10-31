@@ -1,0 +1,71 @@
+代码8-4  在项目的pom.xml文件中添加Hive相关依赖
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.
+apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.example</groupId>
+    <artifactId>HiveJavaAPI</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>3.1.4</version>
+        </dependency>
+        <!-- Hive-->
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-exec</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>javax.el</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-runner</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>3.1.2</version>
+        </dependency>
+    </dependencies>
+</project>
+
+
+代码8-5  Connection.java代码
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import org.apache.hive.jdbc.HiveDriver;
+
+public class Connection {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        String driver = "org.apache.hive.jdbc.HiveDriver";
+        String url = "jdbc:hive2://master:10000/DEFAULT";
+        String username = "root";
+        String password = "123456";
+        // 加载JDBC驱动
+        Class.forName(driver);
+        // 通过URL、用户名、密码建立与Hive数据库的连接
+        java.sql.Connection connection = DriverManager.getConnection(url,
+username,password);
+        // 创建Statement对象
+        Statement stmt = connection.createStatement();
+        // 执行创建数据库test的SQL语句
+        stmt.execute("CREATE DATABASE test");
+        // 关闭Statement对象、Connection对象，释放资源
+        stmt.close();
+        connection.close();
+    }
+}

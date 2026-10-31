@@ -1,0 +1,13 @@
+digraph {
+    graph [fontname="Microsoft YaHei"];
+    node [fontname="Microsoft YaHei", shape="box", style="filled"];
+    edge [fontname="Microsoft YaHei"];
+    subgraph cluster_nn { label="NameNode"; style="dashed";
+        FS [label="fsimage\n(元数据快照)", fillcolor="#E3F2FD"];
+        ED [label="edits_inprogress\n(操作日志)", fillcolor="#FFEBEE"];
+    }
+    SNN [label="SecondaryNameNode\n(定期 CheckPoint)", fillcolor="#E8F5E9"];
+    ED -> SNN [label="拉取 edits"];
+    FS -> SNN [label="拉取 fsimage"];
+    SNN -> FS [label="回传新 fsimage"];
+}

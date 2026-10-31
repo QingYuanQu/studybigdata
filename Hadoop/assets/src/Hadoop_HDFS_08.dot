@@ -1,0 +1,10 @@
+digraph {
+    graph [fontname="Microsoft YaHei"];
+    node [fontname="Microsoft YaHei", shape="box", style="filled"];
+    edge [fontname="Microsoft YaHei"];
+    NN [label="NameNode\nRPC 线程池", fillcolor="#E3F2FD"];
+    HB [label="DataNode 心跳\n(并发)", fillcolor="#E8F5E9"];
+    CL [label="客户端 增删改\n(并发)", fillcolor="#FFF3E0"];
+    HB -> NN [label="handler.count"];
+    CL -> NN [label="handler.count"];
+}

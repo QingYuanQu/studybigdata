@@ -1,0 +1,11 @@
+代码4-13 DISTINCT关键字
+SELECT  DISTINCT run_name,owner_name 
+FROM  mediamatch_usermsg;
+
+代码4-14 MIN函数使用示例
+SELECT MIN(phone_no) 
+FROM  mediamatch_usermsg;
+
+代码4-15 统计品牌名称种类
+SELECT COUNT(DISTINCT sm_name) 
+FROM  mediamatch_usermsg;

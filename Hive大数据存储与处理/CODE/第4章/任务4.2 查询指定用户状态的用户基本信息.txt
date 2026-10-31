@@ -1,0 +1,41 @@
+代码4-5 使用关系运算符过滤数据
+SELECT  phone_no, open_time 
+FROM  mediamatch_usermsg
+WHERE phone_no = '2032485';
+
+代码4-6 含有IN关键字的查询语句
+SELECT  phone_no, open_time 
+FROM  mediamatch_usermsg
+WHERE phone_no IN ('2116612','2017186','2017187','2082337','2212359','2212360');
+
+代码4-7 含有BETWEEN AND关键字的查询语句
+SELECT  phone_no, open_time 
+FROM  mediamatch_usermsg
+WHERE phone_no BETWEEN '2032485' and '2032500';
+
+代码4-8 含有NULL关键字的查询语句
+SELECT  phone_no 
+FROM  mediamatch_usermsg
+WHERE phone_no IS NOT NULL;
+
+代码4-9 含有LIKE关键字的查询语句1
+SELECT  phone_no, sm_name 
+FROM  mediamatch_usermsg
+WHERE sm_name LIKE '%宽频';
+
+代码4-10 含有LIKE关键字的查询语句2
+SELECT  phone_no, sm_name 
+FROM  mediamatch_usermsg
+WHERE phone_no LIKE '_296756';
+
+代码4-11 含有RLIKE关键字的查询语句
+SELECT  phone_no, sm_name 
+FROM  mediamatch_usermsg
+WHERE sm_name RLIKE '.*(珠江|甜果).*';
+
+代码4-12 查询用户状态为销户的用户基本信息
+SELECT  phone_no, run_name,open_time 
+FROM  mediamatch_usermsg
+WHERE run_name LIKE '%销户';
+
+

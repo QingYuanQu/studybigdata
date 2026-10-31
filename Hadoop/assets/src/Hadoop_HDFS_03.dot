@@ -1,0 +1,17 @@
+digraph {
+    graph [fontname="Microsoft YaHei"];
+    node [fontname="Microsoft YaHei", shape="box", style="rounded,filled", fillcolor="#E8F0FE"];
+    edge [fontname="Microsoft YaHei"];
+    Client [label="客户端 Client", fillcolor="#FFF3E0"];
+    NN [label="NameNode\n(元数据 / 命名空间)", fillcolor="#E3F2FD"];
+    DN1 [label="DataNode 1\n(数据块)", fillcolor="#E8F5E9"];
+    DN2 [label="DataNode 2\n(数据块)", fillcolor="#E8F5E9"];
+    DN3 [label="DataNode 3\n(数据块)", fillcolor="#E8F5E9"];
+    Client -> NN [label="1 请求/汇报元数据"];
+    Client -> DN1 [label="2 读写数据块"];
+    Client -> DN2;
+    Client -> DN3;
+    DN1 -> NN [label="心跳 / 块汇报"];
+    DN2 -> NN;
+    DN3 -> NN;
+}

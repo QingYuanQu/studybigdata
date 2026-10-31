@@ -1,0 +1,61 @@
+digraph LinuxSecurity {
+    rankdir=TB;
+    bgcolor="#ffffff";
+    node [fontname="Microsoft YaHei", fontsize=12, style="rounded,filled"];
+    edge [fontname="Microsoft YaHei", fontsize=10, color="#555555"];
+
+    // 标题
+    title [shape=plaintext, label="Linux 安全体系：LSM 架构与访问控制", fontsize=16, fontcolor="#1a1a1a", fillcolor="white"];
+
+    // 基础层：DAC
+    subgraph cluster_dac {
+        label="基础层：DAC 自主访问控制";
+        style="dashed";
+        fillcolor="#eef6ff";
+        dac [label="传统权限\nrwx / chmod / 文件所有者\n(root 不受限)", fillcolor="#cfe3ff"];
+    }
+
+    // 核心：LSM 框架
+    lsm [label="LSM 框架\n(Linux Security Module)\n内核钩子 hook 点", shape=box, fillcolor="#ffe9c7"];
+
+    // 安全模块层
+    subgraph cluster_modules {
+        label="安全模块层（基于 LSM 实现，提供 MAC 强制访问控制）";
+        style="dashed";
+        fillcolor="#f3f0ff";
+        selinux  [label="SELinux\n类型强制 TE\n最严格", fillcolor="#d9ccff"];
+        apparmor [label="AppArmor\n路径式策略", fillcolor="#d9ccff"];
+        smack    [label="Smack", fillcolor="#d9ccff"];
+        tomoyo   [label="Tomoyo", fillcolor="#d9ccff"];
+        cap      [label="capabilities\n细粒度能力位\n(CAP_NET_ADMIN 等)", fillcolor="#d9ccff"];
+    }
+
+    // 访问判定流程
+    subgraph cluster_flow {
+        label="访问判定流程（以进程访问资源为例）";
+        style="dashed";
+        fillcolor="#f0fff0";
+        subject [label="进程 / 主体\nsystem_u:system_r:httpd_t", fillcolor="#c8f0c8"];
+        object  [label="资源 / 客体\n文件·端口·socket 带安全标签", fillcolor="#c8f0c8"];
+        policy  [label="策略判定\n允许 / 拒绝", shape=diamond, fillcolor="#ffd6d6"];
+        allow   [label="允许访问", fillcolor="#d4ffd4"];
+        deny    [label="拒绝并记录日志", fillcolor="#ffbcbc"];
+    }
+
+    // 关系连线
+    dac -> lsm [label="叠加于其上"];
+    lsm -> selinux;
+    lsm -> apparmor;
+    lsm -> smack;
+    lsm -> tomoyo;
+    lsm -> cap [label="统一管控"];
+
+    subject -> policy [label="发起操作\n触发 LSM hook"];
+    object -> policy [label="客体标签参与判定"];
+    policy -> allow [label="策略允许"];
+    policy -> deny [label="策略拒绝"];
+
+    // Hadoop 提示
+    note [shape=plaintext, label="Hadoop/HBase/Kafka 部署提示：\nEnforcing 模式常导致端口绑定/数据目录访问被拒，\n需正确配置策略或临时设为 Permissive", fontsize=10, fontcolor="#b00000", fillcolor="white"];
+    note -> lsm [style="dotted", color="#b00000"];
+}

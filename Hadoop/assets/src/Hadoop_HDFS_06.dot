@@ -1,0 +1,13 @@
+digraph {
+    graph [fontname="Microsoft YaHei"];
+    node [fontname="Microsoft YaHei", shape="box", style="rounded,filled", fillcolor="#E8F0FE"];
+    edge [fontname="Microsoft YaHei", style="rounded"];
+    rankdir=LR;
+    A [label="客户端 创建文件", fillcolor="#FFF3E0"];
+    B [label="NameNode 校验并\n记录元数据(OP_ADD)", fillcolor="#E3F2FD"];
+    C [label="按副本策略选 DataNode\n建立写入管道 Pipeline"];
+    D [label="数据按块流式写入\n逐节点复制"];
+    E [label="收齐副本 ack"];
+    F [label="NameNode 提交\n(OP_CLOSE) 文件可见"];
+    A -> B -> C -> D -> E -> F;
+}

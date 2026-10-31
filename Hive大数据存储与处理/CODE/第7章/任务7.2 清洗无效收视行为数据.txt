@@ -1,0 +1,79 @@
+代码7-9  统计用户观看时长的均值、最值和标准差
+# 统计用户观看时长的均值、最值和标准差
+SELECT
+AVG(CAST(duration AS double)/1000) AS avg_duraion,
+MIN(CAST(duration AS double)/1000) AS min_duraion,
+MAX(CAST(duration AS double)/1000) AS max_duraion,
+STDDEV(CAST(duration AS double)/1000) AS std_duraion 
+FROM media_index;
+
+
+代码7-10  统计观看时长以每小时为区间的记录数
+# 增加一个字段hour：将观看时长转为小时并向下取整；FLOOR函数用于向下取整
+SELECT hour,COUNT(hour),(COUNT(hour)/4754442) AS hour_precent
+FROM (
+SELECT FLOOR(duration/(1000*60*60)) AS hour
+FROM media_index
+) h GROUP BY h.hour
+ORDER BY h.hour;
+
+
+代码7-11  统计观看时长小于1小时的各区间记录数
+# 增加一个字段minutes：将观看时长转为以1min为间隔的数并向下取整
+SELECT minutes,COUNT(minutes),(COUNT(minutes)/4754442) AS minutes_precent
+FROM (
+SELECT FLOOR(duration/(1000*60)) AS minutes
+FROM media_index 
+) m GROUP BY m.minutes 
+ORDER BY m.minutes LIMIT 10;
+
+
+代码7-12  统计用户观看时长中小于1分钟各区间的记录数
+# 新增字段seconds：将观看时长转为以每秒为间隔的数并向下取整
+SELECT seconds,COUNT(seconds),(COUNT(seconds)/4754442) AS seconds_precent
+FROM (
+SELECT FLOOR(duration/1000) AS seconds
+FROM media_index 
+) s GROUP BY s.seconds 
+ORDER BY s.seconds LIMIT 10;
+
+
+代码7-13  查询机顶盒自动返回的数据
+# 查询rest_type字段值为0时，origin_time和end_time结尾为00的记录
+SELECT COUNT(*) 
+FROM media_index 
+WHERE res_type='0' 
+AND origin_time LIKE '%00'
+AND end_time LIKE '%00';
+
+
+代码7-14  删除无效收视行为数据
+#删除无效收视行为数据
+CREATE TABLE IF NOT EXISTS media_index_clean
+AS 
+SELECT * FROM media_index 
+WHERE 
+(CAST(duration AS double)/1000 >= 20 
+AND 
+CAST(duration AS double)/(1000*60*60) < 5
+AND
+res_type='0'
+AND
+origin_time NOT LIKE '%00'
+AND
+end_time NOT LIKE '%00')
+OR
+(CAST(duration AS double)/1000 >= 20
+AND
+CAST(duration AS double)/(1000*60*60) < 5
+AND
+res_type='1');
+
+
+代码7-15  验证media_index_clean表中数据是否有效
+# 验证media_index_clean表中数据是否有效
+SELECT COUNT(*) 
+FROM media_index_clean 
+WHERE res_type='0' 
+AND origin_time LIKE '%00'
+AND end_time LIKE '%00';

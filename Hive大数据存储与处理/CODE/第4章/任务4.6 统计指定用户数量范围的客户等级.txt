@@ -1,0 +1,14 @@
+代码4-25 HAVING关键字
+SELECT COUNT(*), run_name 
+FROM  mediamatch_usermsg 
+GROUP BY run_name
+HAVING COUNT(*) > 10000;
+
+代码4-26 统计用户数量大于200的客户等级
+SELECT COUNT(*), owner_name 
+FROM  mediamatch_usermsg
+GROUP BY owner_name
+HAVING COUNT(*) > 200;
+
+
+

@@ -1,0 +1,2053 @@
+{
+  "RootName": "DataModels",
+  "CTVER": "43543330",
+  "TableCount": 25,
+  "Count": 1,
+  "items": [{
+    "ID": 1,
+    "Name": "模型1",
+    "CreateDate": "2022/2/9 19:14:17",
+    "OrderNo": 1,
+    "Tables": {
+      "Count": 25,
+      "items": [
+        {
+          "ID": 2,
+          "Name": "base_category_info",
+          "Caption": "分类表",
+          "CreateDate": "2022/2/9 19:32:58",
+          "OrderNo": 1,
+          "GraphDesc": "Left=1343.85\r\nTop=1196.67\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 5,
+            "items": [
+              {
+                "ID": 52,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 53,
+                "Name": "category_name",
+                "OrderNo": 2,
+                "DisplayName": "分类名称",
+                "DataType": 1
+              },
+              {
+                "ID": 54,
+                "Name": "create_time",
+                "OrderNo": 3,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 55,
+                "Name": "update_time",
+                "OrderNo": 4,
+                "DisplayName": "更新时间",
+                "DataType": 1
+              },
+              {
+                "ID": 56,
+                "Name": "deleted",
+                "OrderNo": 5,
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 4,
+          "Name": "base_province",
+          "Caption": "省份表",
+          "CreateDate": "2022/2/9 19:35:59",
+          "OrderNo": 2,
+          "GraphDesc": "Left=532.40\r\nTop=240.00\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 6,
+            "items": [
+              {
+                "ID": 79,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 80,
+                "Name": "name",
+                "OrderNo": 2,
+                "DisplayName": "省份名称",
+                "DataType": 1
+              },
+              {
+                "ID": 81,
+                "Name": "region_id",
+                "OrderNo": 3,
+                "DisplayName": "大区 id",
+                "DataType": 1
+              },
+              {
+                "ID": 82,
+                "Name": "area_code",
+                "OrderNo": 4,
+                "DisplayName": "行政区位码",
+                "DataType": 1
+              },
+              {
+                "ID": 83,
+                "Name": "iso_code",
+                "OrderNo": 5,
+                "DisplayName": "iso 编码",
+                "DataType": 1
+              },
+              {
+                "ID": 84,
+                "Name": "iso_3166_2",
+                "OrderNo": 6,
+                "DisplayName": "ISO3166 编码",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 7,
+          "Name": "base_subject_info",
+          "Caption": "科目表",
+          "CreateDate": "2022/2/9 19:55:26",
+          "OrderNo": 3,
+          "GraphDesc": "Left=1067.66\r\nTop=1197.71\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 6,
+            "items": [
+              {
+                "ID": 119,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 1,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 120,
+                "Name": "subject_name",
+                "OrderNo": 2,
+                "DataType": 1
+              },
+              {
+                "ID": 121,
+                "Name": "category_id",
+                "OrderNo": 3,
+                "DataType": 1,
+                "KeyFieldType": 3,
+                "RelateTable": "base_category_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1343.85,1248.00\r\nP2=1318.00,1248.00\r\nP3=1318.00,1248.00\r\nP4=1292.66,1248.00\r\nHookP1=20.15,51.33\r\nHookP2=205.34,50.29\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 122,
+                "Name": "create_time",
+                "OrderNo": 4,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 123,
+                "Name": "update_time",
+                "OrderNo": 5,
+                "DisplayName": "更新时间",
+                "DataType": 1
+              },
+              {
+                "ID": 129,
+                "Name": "deleted",
+                "OrderNo": 6,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 8,
+          "Name": "cart_info",
+          "Caption": "购物车表",
+          "CreateDate": "2022/2/9 19:58:14",
+          "OrderNo": 4,
+          "GraphDesc": "Left=865.76\r\nTop=708.82\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 11,
+            "items": [
+              {
+                "ID": 144,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 145,
+                "Name": "user_id",
+                "OrderNo": 2,
+                "DisplayName": "用户 id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=939.00,666.20\r\nP2=939.00,688.00\r\nP3=939.00,688.00\r\nP4=939.00,708.82\r\nHookP1=129.80,225.80\r\nHookP2=73.24,20.18\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 146,
+                "Name": "course_id",
+                "OrderNo": 3,
+                "DisplayName": "课程 id",
+                "DataType": 1,
+                "KeyFieldType": 3,
+                "RelateTable": "course_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1075.00,922.67\r\nP2=1075.00,915.00\r\nP3=1075.00,915.00\r\nP4=1075.00,906.82\r\nHookP1=44.01,20.33\r\nHookP2=209.24,170.18\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 147,
+                "Name": "course_name",
+                "OrderNo": 4,
+                "DataType": 1
+              },
+              {
+                "ID": 148,
+                "Name": "cart_price",
+                "OrderNo": 5,
+                "DisplayName": "放入购物车时价格",
+                "DataType": 1
+              },
+              {
+                "ID": 149,
+                "Name": "img_url",
+                "OrderNo": 6,
+                "DataType": 1
+              },
+              {
+                "ID": 150,
+                "Name": "session_id",
+                "OrderNo": 7,
+                "DisplayName": "会话 id",
+                "DataType": 1
+              },
+              {
+                "ID": 151,
+                "Name": "create_time",
+                "OrderNo": 8,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 152,
+                "Name": "update_time",
+                "OrderNo": 9,
+                "DisplayName": "修改时间",
+                "DataType": 4
+              },
+              {
+                "ID": 153,
+                "Name": "deleted",
+                "OrderNo": 10,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 154,
+                "Name": "sold",
+                "OrderNo": 11,
+                "DisplayName": "是否已售",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 9,
+          "Name": "chapter_info",
+          "Caption": "章节表",
+          "CreateDate": "2022/2/9 20:02:05",
+          "OrderNo": 5,
+          "GraphDesc": "Left=740.15\r\nTop=1161.43\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 9,
+            "items": [
+              {
+                "ID": 166,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 167,
+                "Name": "chapter_name",
+                "OrderNo": 2,
+                "DisplayName": "章节名称",
+                "DataType": 1
+              },
+              {
+                "ID": 168,
+                "Name": "course_id",
+                "OrderNo": 3,
+                "DisplayName": "课程 id",
+                "DataType": 1,
+                "KeyFieldType": 3,
+                "RelateTable": "course_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1030.99,1157.00\r\nP2=998.00,1157.00\r\nP3=998.00,1181.00\r\nP4=965.15,1181.00\r\nHookP1=28.01,234.33\r\nHookP2=204.85,19.57\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 169,
+                "Name": "video_id",
+                "OrderNo": 4,
+                "DisplayName": "视频 id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "video_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=702.98,1191.00\r\nP2=722.00,1191.00\r\nP3=722.00,1191.00\r\nP4=740.15,1191.00\r\nHookP1=205.02,216.89\r\nHookP2=27.85,29.57\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 170,
+                "Name": "publisher_id",
+                "OrderNo": 5,
+                "DisplayName": "发布者 id",
+                "DataType": 2
+              },
+              {
+                "ID": 171,
+                "Name": "is_free",
+                "OrderNo": 6,
+                "DisplayName": "是否免费",
+                "DataType": 1
+              },
+              {
+                "ID": 172,
+                "Name": "create_time",
+                "OrderNo": 7,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 173,
+                "Name": "update_time",
+                "OrderNo": 8,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              },
+              {
+                "ID": 174,
+                "Name": "deleted",
+                "OrderNo": 9,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 10,
+          "Name": "comment_info",
+          "Caption": "章节评价表",
+          "CreateDate": "2022/2/9 20:05:11",
+          "OrderNo": 6,
+          "GraphDesc": "Left=536.20\r\nTop=773.40\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 7,
+            "items": [
+              {
+                "ID": 186,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 187,
+                "Name": "user_id",
+                "OrderNo": 2,
+                "DisplayName": "用户id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=828.36,666.20\r\nP2=828.36,848.40\r\nP3=828.36,848.40\r\nP4=754.20,848.40\r\nHookP1=19.16,209.93\r\nHookP2=144.41,75.00\r\nMod_OP1=1\r\nMod_OP2=1\r\nMod_CP=1\r\nHorz1=0\r\nHorz2=1"
+              },
+              {
+                "ID": 188,
+                "Name": "chapter_id",
+                "OrderNo": 3,
+                "DisplayName": "章节id",
+                "DataType": 1,
+                "KeyFieldType": 3,
+                "RelateTable": "chapter_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=760.00,1161.43\r\nP2=760.00,1130.00\r\nP3=726.00,1130.00\r\nP4=726.00,907.40\r\nHookP1=19.85,35.57\r\nHookP2=189.80,105.60\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 189,
+                "Name": "course_id",
+                "OrderNo": 4,
+                "DisplayName": "课程id",
+                "DataType": 2
+              },
+              {
+                "ID": 191,
+                "Name": "comment_txt",
+                "OrderNo": 5,
+                "DisplayName": "评价内容",
+                "DataType": 1
+              },
+              {
+                "ID": 190,
+                "Name": "deleted",
+                "OrderNo": 6,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 192,
+                "Name": "create_time",
+                "OrderNo": 7,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 11,
+          "Name": "course_info",
+          "Caption": "课程信息表",
+          "CreateDate": "2022/2/9 20:08:30",
+          "OrderNo": 7,
+          "GraphDesc": "Left=1030.99\r\nTop=922.67\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 15,
+            "items": [
+              {
+                "ID": 204,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 206,
+                "Name": "course_name",
+                "OrderNo": 2,
+                "DataType": 1
+              },
+              {
+                "ID": 207,
+                "Name": "course_slogan",
+                "OrderNo": 3,
+                "DataType": 1
+              },
+              {
+                "ID": 208,
+                "Name": "course_cover_url",
+                "OrderNo": 4,
+                "DisplayName": "课程封面",
+                "DataType": 1
+              },
+              {
+                "ID": 209,
+                "Name": "subject_id",
+                "OrderNo": 5,
+                "DisplayName": "学科id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "base_subject_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1165.00,1197.71\r\nP2=1165.00,1191.00\r\nP3=1165.00,1191.00\r\nP4=1165.00,1184.67\r\nHookP1=97.34,28.29\r\nHookP2=134.01,226.33\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 210,
+                "Name": "teacher",
+                "OrderNo": 6,
+                "DisplayName": "讲师名称",
+                "DataType": 1
+              },
+              {
+                "ID": 211,
+                "Name": "publisher_id",
+                "OrderNo": 7,
+                "DisplayName": "发布者id",
+                "DataType": 2
+              },
+              {
+                "ID": 212,
+                "Name": "chapter_num",
+                "OrderNo": 8,
+                "DisplayName": "章节数",
+                "DataType": 3
+              },
+              {
+                "ID": 213,
+                "Name": "origin_price",
+                "OrderNo": 9,
+                "DisplayName": "价格"
+              },
+              {
+                "ID": 205,
+                "Name": "reduce_amount",
+                "OrderNo": 10,
+                "DisplayName": "优惠金额",
+                "DataType": 1
+              },
+              {
+                "ID": 215,
+                "Name": "actual_price",
+                "OrderNo": 11,
+                "DisplayName": "实际价格",
+                "DataType": 1
+              },
+              {
+                "ID": 216,
+                "Name": "course_introduce",
+                "OrderNo": 12,
+                "DataType": 1
+              },
+              {
+                "ID": 217,
+                "Name": "create_time",
+                "OrderNo": 13,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 214,
+                "Name": "deleted",
+                "OrderNo": 14,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 218,
+                "Name": "update_time",
+                "OrderNo": 15,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 12,
+          "Name": "favor_info",
+          "Caption": "收藏表",
+          "CreateDate": "2022/2/9 20:13:19",
+          "OrderNo": 8,
+          "GraphDesc": "Left=1047.68\r\nTop=523.09\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 6,
+            "items": [
+              {
+                "ID": 230,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 232,
+                "Name": "course_id",
+                "OrderNo": 2,
+                "DisplayName": "课程id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "course_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1130.00,922.67\r\nP2=1130.00,782.00\r\nP3=1130.00,782.00\r\nP4=1130.00,641.09\r\nHookP1=99.01,44.33\r\nHookP2=82.32,97.91\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 233,
+                "Name": "user_id",
+                "OrderNo": 3,
+                "DisplayName": "用户id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1013.20,590.00\r\nP2=1030.00,590.00\r\nP3=1030.00,590.00\r\nP4=1047.68,590.00\r\nHookP1=167.80,169.80\r\nHookP2=28.32,66.91\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 234,
+                "Name": "create_time",
+                "OrderNo": 4,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 231,
+                "Name": "deleted",
+                "OrderNo": 5,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 235,
+                "Name": "update_time",
+                "OrderNo": 6,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 13,
+          "Name": "knowledge_point",
+          "Caption": "知识点表",
+          "CreateDate": "2022/2/9 20:15:00",
+          "OrderNo": 9,
+          "GraphDesc": "Left=743.53\r\nTop=1864.55\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 9,
+            "items": [
+              {
+                "ID": 247,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号（主键）",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 249,
+                "Name": "point_txt",
+                "OrderNo": 2,
+                "DisplayName": "知识点内容",
+                "DataType": 1
+              },
+              {
+                "ID": 250,
+                "Name": "point_level",
+                "OrderNo": 3,
+                "DisplayName": "知识点级别",
+                "DataType": 2
+              },
+              {
+                "ID": 251,
+                "Name": "course_id",
+                "OrderNo": 4,
+                "DisplayName": "课程id",
+                "DataType": 2
+              },
+              {
+                "ID": 252,
+                "Name": "chapter_id",
+                "OrderNo": 5,
+                "DisplayName": "章节id",
+                "DataType": 2
+              },
+              {
+                "ID": 253,
+                "Name": "publisher_id",
+                "OrderNo": 6,
+                "DisplayName": "发布者id",
+                "DataType": 2
+              },
+              {
+                "ID": 254,
+                "Name": "create_time",
+                "OrderNo": 7,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 248,
+                "Name": "update_time",
+                "OrderNo": 8,
+                "DisplayName": "修改时间",
+                "DataType": 4
+              },
+              {
+                "ID": 255,
+                "Name": "deleted",
+                "OrderNo": 9,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 14,
+          "Name": "order_detail",
+          "Caption": "订单明细表",
+          "CreateDate": "2022/2/9 20:17:38",
+          "OrderNo": 10,
+          "GraphDesc": "Left=250.80\r\nTop=715.11\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 11,
+            "items": [
+              {
+                "ID": 267,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 269,
+                "Name": "course_id",
+                "OrderNo": 2,
+                "DisplayName": "课程id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "course_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1030.99,959.40\r\nP2=362.80,959.40\r\nP3=362.80,959.40\r\nP4=362.80,913.11\r\nHookP1=140.00,36.73\r\nHookP2=112.00,99.00\r\nMod_OP1=1\r\nMod_OP2=1\r\nMod_CP=1\r\nHorz1=1\r\nHorz2=0"
+              },
+              {
+                "ID": 270,
+                "Name": "course_name",
+                "OrderNo": 3,
+                "DisplayName": "课程名称",
+                "DataType": 1
+              },
+              {
+                "ID": 271,
+                "Name": "order_id",
+                "OrderNo": 4,
+                "DisplayName": "订单编号",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "order_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=547.00,647.20\r\nP2=547.00,743.00\r\nP3=547.00,743.00\r\nP4=475.80,743.00\r\nHookP1=20.40,209.80\r\nHookP2=197.20,27.89\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=1"
+              },
+              {
+                "ID": 272,
+                "Name": "user_id",
+                "OrderNo": 5,
+                "DisplayName": "用户id ",
+                "DataType": 2,
+                "GraphDesc": "P1=901.00,655.00\r\nP2=682.00,655.00\r\nP3=682.00,655.00\r\nP4=462.00,655.00\r\nHookP1=20.00,213.00\r\nHookP2=197.00,161.80\r\nMod_OP1=1\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 273,
+                "Name": "origin_amount",
+                "OrderNo": 6,
+                "DisplayName": "原始金额",
+                "DataType": 3
+              },
+              {
+                "ID": 274,
+                "Name": "coupon_reduce",
+                "OrderNo": 7,
+                "DisplayName": "优惠券减免金额",
+                "DataType": 3
+              },
+              {
+                "ID": 275,
+                "Name": "final_amount",
+                "OrderNo": 8,
+                "DisplayName": "最终金额",
+                "DataType": 3
+              },
+              {
+                "ID": 276,
+                "Name": "session_id",
+                "OrderNo": 9,
+                "DisplayName": "会话id",
+                "DataType": 1
+              },
+              {
+                "ID": 277,
+                "Name": "create_time",
+                "OrderNo": 10,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 278,
+                "Name": "update_time",
+                "OrderNo": 11,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 15,
+          "Name": "order_info",
+          "Caption": "订单表",
+          "CreateDate": "2022/2/9 20:21:38",
+          "OrderNo": 11,
+          "GraphDesc": "Left=526.60\r\nTop=417.20\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 13,
+            "items": [
+              {
+                "ID": 290,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 292,
+                "Name": "user_id",
+                "OrderNo": 2,
+                "DisplayName": "用户id",
+                "DataType": 1,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=809.20,534.00\r\nP2=784.00,534.00\r\nP3=784.00,534.00\r\nP4=758.60,534.00\r\nHookP1=43.80,113.80\r\nHookP2=204.40,116.80\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 293,
+                "Name": "origin_amount",
+                "OrderNo": 3,
+                "DisplayName": "原始金额",
+                "DataType": 3
+              },
+              {
+                "ID": 294,
+                "Name": "coupon_reduce",
+                "OrderNo": 4,
+                "DisplayName": "优惠券减免",
+                "DataType": 3
+              },
+              {
+                "ID": 295,
+                "Name": "final_amount",
+                "OrderNo": 5,
+                "DisplayName": "最终金额",
+                "DataType": 3
+              },
+              {
+                "ID": 296,
+                "Name": "order_status",
+                "OrderNo": 6,
+                "DisplayName": "订单状态",
+                "DataType": 1
+              },
+              {
+                "ID": 297,
+                "Name": "out_trade_no",
+                "OrderNo": 7,
+                "DisplayName": "订单交易编号",
+                "DataType": 1
+              },
+              {
+                "ID": 298,
+                "Name": "trade_body",
+                "OrderNo": 8,
+                "DisplayName": "订单描述",
+                "DataType": 1
+              },
+              {
+                "ID": 299,
+                "Name": "session_id",
+                "OrderNo": 9,
+                "DisplayName": "会话id",
+                "DataType": 1
+              },
+              {
+                "ID": 300,
+                "Name": "province_id",
+                "OrderNo": 10,
+                "DisplayName": "省份id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "base_province",
+                "RelateField": "id",
+                "GraphDesc": "P1=634.00,358.00\r\nP2=634.00,388.00\r\nP3=634.00,388.00\r\nP4=634.00,417.20\r\nHookP1=101.60,98.00\r\nHookP2=107.40,35.80\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 301,
+                "Name": "create_time",
+                "OrderNo": 11,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 302,
+                "Name": "expire_time",
+                "OrderNo": 12,
+                "DisplayName": "失效时间",
+                "DataType": 4
+              },
+              {
+                "ID": 303,
+                "Name": "update_time",
+                "OrderNo": 13,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 16,
+          "Name": "payment_info",
+          "Caption": "支付表",
+          "CreateDate": "2022/2/9 20:25:20",
+          "OrderNo": 12,
+          "GraphDesc": "Left=241.76\r\nTop=452.32\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 12,
+            "items": [
+              {
+                "ID": 315,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2
+              },
+              {
+                "ID": 316,
+                "Name": "out_trade_no",
+                "OrderNo": 2,
+                "DisplayName": "对外业务编号",
+                "DataType": 1
+              },
+              {
+                "ID": 318,
+                "Name": "order_id",
+                "OrderNo": 3,
+                "DisplayName": "订单编号",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "order_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=526.60,550.00\r\nP2=518.00,550.00\r\nP3=518.00,550.00\r\nP4=508.76,550.00\r\nHookP1=44.40,132.80\r\nHookP2=247.24,97.68\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 319,
+                "Name": "alipay_trade_no",
+                "OrderNo": 4,
+                "DisplayName": "支付宝交易编号",
+                "DataType": 1
+              },
+              {
+                "ID": 320,
+                "Name": "total_amount",
+                "OrderNo": 5,
+                "DisplayName": "支付金额",
+                "DataType": 3
+              },
+              {
+                "ID": 321,
+                "Name": "trade_body",
+                "OrderNo": 6,
+                "DisplayName": "交易内容",
+                "DataType": 1
+              },
+              {
+                "ID": 322,
+                "Name": "payment_type",
+                "OrderNo": 7,
+                "DisplayName": "支付类型",
+                "DataType": 1
+              },
+              {
+                "ID": 323,
+                "Name": "payment_status",
+                "OrderNo": 8,
+                "DataType": 1
+              },
+              {
+                "ID": 324,
+                "Name": "create_time",
+                "OrderNo": 9,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 325,
+                "Name": "update_time",
+                "OrderNo": 10,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              },
+              {
+                "ID": 326,
+                "Name": "callback_content",
+                "OrderNo": 11,
+                "DisplayName": "回调时间",
+                "DataType": 1,
+                "DataTypeName": "是啊集锦文本"
+              },
+              {
+                "ID": 327,
+                "Name": "callback_time",
+                "OrderNo": 12,
+                "DisplayName": "回调时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 17,
+          "Name": "review_info",
+          "Caption": "课程评价表",
+          "CreateDate": "2022/2/9 22:45:36",
+          "OrderNo": 13,
+          "GraphDesc": "Left=1142.32\r\nTop=737.16\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 7,
+            "items": [
+              {
+                "ID": 339,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 340,
+                "Name": "user_id",
+                "OrderNo": 2,
+                "DataType": 1,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1013.20,502.00\r\nP2=1290.00,502.00\r\nP3=1290.00,502.00\r\nP4=1290.00,737.16\r\nHookP1=151.80,81.80\r\nHookP2=147.68,19.84\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=0"
+              },
+              {
+                "ID": 342,
+                "Name": "course_id",
+                "OrderNo": 3,
+                "DisplayName": "课程id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "course_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=1181.39,922.67\r\nP2=1181.39,897.00\r\nP3=1181.39,897.00\r\nP4=1181.39,871.16\r\nHookP1=150.40,99.00\r\nHookP2=39.07,106.44\r\nMod_OP1=1\r\nMod_OP2=1\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 343,
+                "Name": "review_txt",
+                "OrderNo": 4,
+                "DataType": 1
+              },
+              {
+                "ID": 344,
+                "Name": "review_stars",
+                "OrderNo": 5,
+                "DataType": 1
+              },
+              {
+                "ID": 341,
+                "Name": "deleted",
+                "OrderNo": 6,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 345,
+                "Name": "create_time",
+                "OrderNo": 7,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 18,
+          "Name": "test_exam",
+          "Caption": "测验表",
+          "CreateDate": "2022/2/9 22:48:02",
+          "OrderNo": 14,
+          "GraphDesc": "Left=696.49\r\nTop=1409.07\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 9,
+            "items": [
+              {
+                "ID": 357,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 359,
+                "Name": "paper_id",
+                "OrderNo": 2,
+                "DisplayName": "考卷id",
+                "DataType": 1,
+                "KeyFieldType": 3,
+                "RelateTable": "test_paper",
+                "RelateField": "id",
+                "GraphDesc": "P1=650.13,1491.00\r\nP2=673.00,1491.00\r\nP3=673.00,1491.00\r\nP4=696.49,1491.00\r\nHookP1=183.87,66.77\r\nHookP2=19.51,81.93\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 360,
+                "Name": "user_id",
+                "OrderNo": 3,
+                "DisplayName": "用户id ",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info111",
+                "RelateField": "id",
+                "GraphDesc": "P1=996.21,1500.00\r\nP2=959.00,1500.00\r\nP3=959.00,1500.00\r\nP4=921.49,1500.00\r\nHookP1=19.79,134.30\r\nHookP2=196.51,90.93\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 361,
+                "Name": "score",
+                "OrderNo": 4,
+                "DisplayName": "分数",
+                "DataType": 3
+              },
+              {
+                "ID": 362,
+                "Name": "duration_sec",
+                "OrderNo": 5,
+                "DisplayName": "所用时长",
+                "DataType": 2
+              },
+              {
+                "ID": 363,
+                "Name": "create_time",
+                "OrderNo": 6,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 364,
+                "Name": "submit_time",
+                "OrderNo": 7,
+                "DisplayName": "提交时间",
+                "DataType": 4
+              },
+              {
+                "ID": 358,
+                "Name": "update_time",
+                "OrderNo": 8,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              },
+              {
+                "ID": 365,
+                "Name": "deleted",
+                "OrderNo": 9,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 19,
+          "Name": "test_exam_question",
+          "Caption": "测验问题表",
+          "CreateDate": "2022/2/9 22:51:30",
+          "OrderNo": 15,
+          "GraphDesc": "Left=754.97\r\nTop=1643.18\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 11,
+            "items": [
+              {
+                "ID": 377,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 379,
+                "Name": "exam_id",
+                "OrderNo": 2,
+                "DisplayName": "考试id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "test_exam",
+                "RelateField": "id",
+                "GraphDesc": "P1=838.00,1575.07\r\nP2=838.00,1609.00\r\nP3=838.00,1609.00\r\nP4=838.00,1643.18\r\nHookP1=141.51,129.93\r\nHookP2=83.03,19.82\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 380,
+                "Name": "paper_id",
+                "OrderNo": 3,
+                "DisplayName": "试卷id",
+                "DataType": 2
+              },
+              {
+                "ID": 381,
+                "Name": "question_id",
+                "OrderNo": 4,
+                "DisplayName": "问题id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "test_paper_question",
+                "RelateField": "id",
+                "GraphDesc": "P1=647.65,1696.00\r\nP2=701.00,1696.00\r\nP3=701.00,1696.00\r\nP4=754.97,1696.00\r\nHookP1=184.35,81.14\r\nHookP2=28.03,52.82\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=1\r\nHorz2=1"
+              },
+              {
+                "ID": 382,
+                "Name": "user_id",
+                "OrderNo": 5,
+                "DisplayName": "用户id",
+                "DataType": 2
+              },
+              {
+                "ID": 383,
+                "Name": "answer",
+                "OrderNo": 6,
+                "DisplayName": "答案",
+                "DataType": 1
+              },
+              {
+                "ID": 384,
+                "Name": "is_correct",
+                "OrderNo": 7,
+                "DataType": 1
+              },
+              {
+                "ID": 385,
+                "Name": "score",
+                "OrderNo": 8,
+                "DisplayName": "本题得分",
+                "DataType": 3
+              },
+              {
+                "ID": 386,
+                "Name": "create_time",
+                "OrderNo": 9,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 387,
+                "Name": "update_time",
+                "OrderNo": 10,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              },
+              {
+                "ID": 388,
+                "Name": "deleted",
+                "OrderNo": 11,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 20,
+          "Name": "test_paper",
+          "Caption": "试卷表",
+          "CreateDate": "2022/2/9 22:54:55",
+          "OrderNo": 16,
+          "GraphDesc": "Left=446.13\r\nTop=1424.23\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 7,
+            "items": [
+              {
+                "ID": 401,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 403,
+                "Name": "paper_title",
+                "OrderNo": 2,
+                "DataType": 1
+              },
+              {
+                "ID": 404,
+                "Name": "course_id",
+                "OrderNo": 3,
+                "DisplayName": "课程id",
+                "DataType": 2
+              },
+              {
+                "ID": 405,
+                "Name": "create_time",
+                "OrderNo": 4,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 406,
+                "Name": "update_time",
+                "OrderNo": 5,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              },
+              {
+                "ID": 402,
+                "Name": "deleted",
+                "OrderNo": 6,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 407,
+                "Name": "publisher_id",
+                "OrderNo": 7,
+                "DisplayName": "发布者id",
+                "DataType": 2
+              }
+            ]
+          }
+        },
+        {
+          "ID": 21,
+          "Name": "test_paper_question",
+          "Caption": "试卷问题表",
+          "CreateDate": "2022/2/9 22:56:40",
+          "OrderNo": 17,
+          "GraphDesc": "Left=443.65\r\nTop=1614.86\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 7,
+            "items": [
+              {
+                "ID": 419,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 421,
+                "Name": "paper_id",
+                "OrderNo": 2,
+                "DisplayName": "试卷id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "test_paper",
+                "RelateField": "id",
+                "GraphDesc": "P1=547.00,1558.23\r\nP2=547.00,1587.00\r\nP3=547.00,1587.00\r\nP4=547.00,1614.86\r\nHookP1=100.87,105.77\r\nHookP2=103.35,28.14\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 422,
+                "Name": "question_id",
+                "OrderNo": 3,
+                "DisplayName": "题目id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "test_question_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=535.35,1830.04\r\nP2=535.35,1789.00\r\nP3=539.20,1789.00\r\nP4=539.20,1748.86\r\nHookP1=97.82,83.00\r\nHookP2=95.55,75.00\r\nMod_OP1=1\r\nMod_OP2=1\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 423,
+                "Name": "score",
+                "OrderNo": 4,
+                "DisplayName": "得分",
+                "DataType": 3
+              },
+              {
+                "ID": 424,
+                "Name": "create_time",
+                "OrderNo": 5,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 420,
+                "Name": "publisher_id",
+                "OrderNo": 6,
+                "DisplayName": "发布者id",
+                "DataType": 2
+              },
+              {
+                "ID": 425,
+                "Name": "deleted",
+                "OrderNo": 7,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 22,
+          "Name": "test_point_question",
+          "Caption": "知识点问题表",
+          "CreateDate": "2022/2/9 22:59:04",
+          "OrderNo": 18,
+          "GraphDesc": "Left=469.86\r\nTop=2054.64\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 6,
+            "items": [
+              {
+                "ID": 437,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 439,
+                "Name": "point_id",
+                "OrderNo": 2,
+                "DisplayName": "知识点id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "knowledge_point",
+                "RelateField": "id",
+                "GraphDesc": "P1=764.00,2030.55\r\nP2=764.00,2075.00\r\nP3=764.00,2075.00\r\nP4=683.86,2075.00\r\nHookP1=20.47,146.45\r\nHookP2=194.14,20.36\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=1"
+              },
+              {
+                "ID": 440,
+                "Name": "question_id",
+                "OrderNo": 3,
+                "DisplayName": "问题id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "test_question_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=559.00,1996.04\r\nP2=559.00,2025.00\r\nP3=559.00,2025.00\r\nP4=559.00,2054.64\r\nHookP1=121.47,137.96\r\nHookP2=89.14,28.36\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 441,
+                "Name": "create_time",
+                "OrderNo": 4,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 442,
+                "Name": "publisher_id",
+                "OrderNo": 5,
+                "DisplayName": "发布者id",
+                "DataType": 2
+              },
+              {
+                "ID": 443,
+                "Name": "deleted",
+                "OrderNo": 6,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 23,
+          "Name": "test_question_info",
+          "Caption": "问题信息表",
+          "CreateDate": "2022/2/9 23:00:37",
+          "OrderNo": 19,
+          "GraphDesc": "Left=437.53\r\nTop=1830.04\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 9,
+            "items": [
+              {
+                "ID": 456,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 458,
+                "Name": "question_txt",
+                "OrderNo": 2,
+                "DisplayName": "题目内容",
+                "DataType": 1
+              },
+              {
+                "ID": 459,
+                "Name": "chapter_id",
+                "OrderNo": 3,
+                "DisplayName": "章节id",
+                "DataType": 2
+              },
+              {
+                "ID": 460,
+                "Name": "course_id",
+                "OrderNo": 4,
+                "DisplayName": "课程id",
+                "DataType": 2
+              },
+              {
+                "ID": 461,
+                "Name": "question_type",
+                "OrderNo": 5,
+                "DisplayName": "题目类型",
+                "DataType": 2
+              },
+              {
+                "ID": 462,
+                "Name": "create_time",
+                "OrderNo": 6,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 463,
+                "Name": "update_time",
+                "OrderNo": 7,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              },
+              {
+                "ID": 457,
+                "Name": "deleted",
+                "OrderNo": 8,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 464,
+                "Name": "publisher_id",
+                "OrderNo": 9,
+                "DisplayName": "发布者id",
+                "DataType": 2
+              }
+            ]
+          }
+        },
+        {
+          "ID": 24,
+          "Name": "test_question_option",
+          "Caption": "问题选项表",
+          "CreateDate": "2022/2/9 23:03:14",
+          "OrderNo": 20,
+          "GraphDesc": "Left=131.21\r\nTop=1634.55\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 7,
+            "items": [
+              {
+                "ID": 476,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 478,
+                "Name": "option_txt",
+                "OrderNo": 2,
+                "DisplayName": "选项内容",
+                "DataType": 1
+              },
+              {
+                "ID": 479,
+                "Name": "question_id",
+                "OrderNo": 3,
+                "DisplayName": "题目id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "test_question_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=474.00,1830.04\r\nP2=474.00,1800.75\r\nP3=235.21,1800.75\r\nP4=235.21,1768.55\r\nHookP1=36.47,35.96\r\nHookP2=104.00,67.00\r\nMod_OP1=1\r\nMod_OP2=1\r\nMod_CP=1\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 480,
+                "Name": "is_correct",
+                "OrderNo": 4,
+                "DisplayName": "是否正确",
+                "DataType": 1
+              },
+              {
+                "ID": 481,
+                "Name": "create_time",
+                "OrderNo": 5,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 477,
+                "Name": "deleted",
+                "OrderNo": 6,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 482,
+                "Name": "update_time",
+                "OrderNo": 7,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 25,
+          "Name": "user_chapter_process",
+          "Caption": "用户章节进程表",
+          "CreateDate": "2022/2/9 23:04:54",
+          "OrderNo": 21,
+          "GraphDesc": "Left=746.52\r\nTop=969.18\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 8,
+            "items": [
+              {
+                "ID": 494,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 496,
+                "Name": "course_id",
+                "OrderNo": 2,
+                "DisplayName": "课程id",
+                "DataType": 2
+              },
+              {
+                "ID": 497,
+                "Name": "chapter_id",
+                "OrderNo": 3,
+                "DisplayName": "章节id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "chapter_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=856.00,1161.43\r\nP2=856.00,1140.00\r\nP3=856.00,1140.00\r\nP4=856.00,1119.18\r\nHookP1=115.85,43.57\r\nHookP2=109.48,129.82\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 498,
+                "Name": "user_id",
+                "OrderNo": 4,
+                "DisplayName": "用户id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info",
+                "RelateField": "id",
+                "GraphDesc": "P1=847.00,666.20\r\nP2=847.00,818.00\r\nP3=847.00,818.00\r\nP4=847.00,969.18\r\nHookP1=37.80,185.80\r\nHookP2=100.48,27.82\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 499,
+                "Name": "position_sec",
+                "OrderNo": 5,
+                "DisplayName": "时长位置",
+                "DataType": 2
+              },
+              {
+                "ID": 500,
+                "Name": "create_time",
+                "OrderNo": 6,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 495,
+                "Name": "deleted",
+                "OrderNo": 7,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              },
+              {
+                "ID": 501,
+                "Name": "update_time",
+                "OrderNo": 8,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 26,
+          "Name": "user_info111",
+          "Caption": "用户表",
+          "CreateDate": "2022/2/9 23:07:23",
+          "OrderNo": 22,
+          "GraphDesc": "Left=996.21\r\nTop=1365.70\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 14,
+            "items": [
+              {
+                "ID": 513,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 515,
+                "Name": "login_name",
+                "OrderNo": 2,
+                "DataType": 1
+              },
+              {
+                "ID": 516,
+                "Name": "nick_name",
+                "OrderNo": 3,
+                "DataType": 1
+              },
+              {
+                "ID": 517,
+                "Name": "passwd",
+                "OrderNo": 4,
+                "DataType": 1
+              },
+              {
+                "ID": 518,
+                "Name": "real_name",
+                "OrderNo": 5,
+                "DataType": 1
+              },
+              {
+                "ID": 519,
+                "Name": "phone_num",
+                "OrderNo": 6,
+                "DataType": 1
+              },
+              {
+                "ID": 520,
+                "Name": "email",
+                "OrderNo": 7,
+                "DisplayName": "邮箱",
+                "DataType": 1
+              },
+              {
+                "ID": 521,
+                "Name": "head_img",
+                "OrderNo": 8,
+                "DisplayName": "头像",
+                "DataType": 1
+              },
+              {
+                "ID": 522,
+                "Name": "user_level",
+                "OrderNo": 9,
+                "DisplayName": "用户级别",
+                "DataType": 1
+              },
+              {
+                "ID": 523,
+                "Name": "birthday",
+                "OrderNo": 10,
+                "DisplayName": "用户生日",
+                "DataType": 4,
+                "DataTypeName": "日期"
+              },
+              {
+                "ID": 524,
+                "Name": "gender",
+                "OrderNo": 11,
+                "DataType": 1
+              },
+              {
+                "ID": 514,
+                "Name": "create_time",
+                "OrderNo": 12,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 525,
+                "Name": "status",
+                "OrderNo": 13,
+                "DisplayName": "状态",
+                "DataType": 1
+              },
+              {
+                "ID": 526,
+                "Name": "operate_time",
+                "OrderNo": 14,
+                "DisplayName": "修改时间",
+                "DataType": 4
+              }
+            ]
+          }
+        },
+        {
+          "ID": 27,
+          "Name": "video_info",
+          "Caption": "视频表",
+          "CreateDate": "2022/2/9 23:11:04",
+          "OrderNo": 23,
+          "GraphDesc": "Left=477.98\r\nTop=974.11\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 14,
+            "items": [
+              {
+                "ID": 538,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 540,
+                "Name": "video_name",
+                "OrderNo": 2,
+                "DisplayName": "视频名称",
+                "DataType": 1
+              },
+              {
+                "ID": 541,
+                "Name": "during_sec",
+                "OrderNo": 3,
+                "DisplayName": "时长",
+                "DataType": 2
+              },
+              {
+                "ID": 542,
+                "Name": "video_status",
+                "OrderNo": 4,
+                "DisplayName": "状态",
+                "DataType": 1
+              },
+              {
+                "ID": 543,
+                "Name": "video_size",
+                "OrderNo": 5,
+                "DataType": 2
+              },
+              {
+                "ID": 544,
+                "Name": "video_url",
+                "OrderNo": 6,
+                "DataType": 1
+              },
+              {
+                "ID": 545,
+                "Name": "video_srouce_id",
+                "OrderNo": 7,
+                "DataType": 1
+              },
+              {
+                "ID": 546,
+                "Name": "version_id",
+                "OrderNo": 8,
+                "DisplayName": "版本号",
+                "DataType": 2
+              },
+              {
+                "ID": 547,
+                "Name": "chapter_id",
+                "OrderNo": 9,
+                "DisplayName": "章节id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "chapter_info",
+                "RelateField": "id"
+              },
+              {
+                "ID": 548,
+                "Name": "course_id",
+                "OrderNo": 10,
+                "DisplayName": "课程id",
+                "DataType": 2
+              },
+              {
+                "ID": 549,
+                "Name": "publisher_id",
+                "OrderNo": 11,
+                "DisplayName": "发布者id",
+                "DataType": 2
+              },
+              {
+                "ID": 550,
+                "Name": "create_time",
+                "OrderNo": 12,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 539,
+                "Name": "update_time",
+                "OrderNo": 13,
+                "DisplayName": "更新时间",
+                "DataType": 4
+              },
+              {
+                "ID": 551,
+                "Name": "deleted",
+                "OrderNo": 14,
+                "DisplayName": "是否删除",
+                "DataType": 1
+              }
+            ]
+          }
+        },
+        {
+          "ID": 28,
+          "Name": "vip_change_detail",
+          "Caption": "vip变化表",
+          "CreateDate": "2022/2/9 23:15:08",
+          "OrderNo": 24,
+          "GraphDesc": "Left=1004.25\r\nTop=1703.67\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 5,
+            "items": [
+              {
+                "ID": 563,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 565,
+                "Name": "user_id",
+                "OrderNo": 2,
+                "DisplayName": "用户id",
+                "DataType": 2,
+                "KeyFieldType": 3,
+                "RelateTable": "user_info111",
+                "RelateField": "id",
+                "GraphDesc": "P1=1095.00,1611.70\r\nP2=1095.00,1658.00\r\nP3=1095.00,1658.00\r\nP4=1095.00,1703.67\r\nHookP1=98.79,218.30\r\nHookP2=90.75,20.33\r\nMod_OP1=0\r\nMod_OP2=0\r\nMod_CP=0\r\nHorz1=0\r\nHorz2=0"
+              },
+              {
+                "ID": 566,
+                "Name": "from_vip",
+                "OrderNo": 3,
+                "DataType": 2
+              },
+              {
+                "ID": 564,
+                "Name": "create_time",
+                "OrderNo": 4,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 567,
+                "Name": "to_vip",
+                "OrderNo": 5,
+                "DataType": 2
+              }
+            ]
+          }
+        },
+        {
+          "ID": 26,
+          "Name": "user_info",
+          "Caption": "用户表",
+          "CreateDate": "2022/2/9 23:07:23",
+          "OrderNo": 25,
+          "GraphDesc": "Left=809.20\r\nTop=420.20\r\nBLeft=0.00\r\nBTop=0.00",
+          "MetaFields": {
+            "Count": 14,
+            "items": [
+              {
+                "ID": 513,
+                "Name": "id",
+                "OrderNo": 1,
+                "DisplayName": "编号",
+                "DataType": 2,
+                "KeyFieldType": 1
+              },
+              {
+                "ID": 515,
+                "Name": "login_name",
+                "OrderNo": 2,
+                "DataType": 1
+              },
+              {
+                "ID": 516,
+                "Name": "nick_name",
+                "OrderNo": 3,
+                "DataType": 1
+              },
+              {
+                "ID": 517,
+                "Name": "passwd",
+                "OrderNo": 4,
+                "DataType": 1
+              },
+              {
+                "ID": 518,
+                "Name": "real_name",
+                "OrderNo": 5,
+                "DataType": 1
+              },
+              {
+                "ID": 519,
+                "Name": "phone_num",
+                "OrderNo": 6,
+                "DataType": 1
+              },
+              {
+                "ID": 520,
+                "Name": "email",
+                "OrderNo": 7,
+                "DisplayName": "邮箱",
+                "DataType": 1
+              },
+              {
+                "ID": 521,
+                "Name": "head_img",
+                "OrderNo": 8,
+                "DisplayName": "头像",
+                "DataType": 1
+              },
+              {
+                "ID": 522,
+                "Name": "user_level",
+                "OrderNo": 9,
+                "DisplayName": "用户级别",
+                "DataType": 1
+              },
+              {
+                "ID": 523,
+                "Name": "birthday",
+                "OrderNo": 10,
+                "DisplayName": "用户生日",
+                "DataType": 4,
+                "DataTypeName": "日期"
+              },
+              {
+                "ID": 524,
+                "Name": "gender",
+                "OrderNo": 11,
+                "DataType": 1
+              },
+              {
+                "ID": 514,
+                "Name": "create_time",
+                "OrderNo": 12,
+                "DisplayName": "创建时间",
+                "DataType": 4
+              },
+              {
+                "ID": 525,
+                "Name": "status",
+                "OrderNo": 13,
+                "DisplayName": "状态",
+                "DataType": 1
+              },
+              {
+                "ID": 526,
+                "Name": "operate_time",
+                "OrderNo": 14,
+                "DisplayName": "修改时间",
+                "DataType": 4
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }]
+}

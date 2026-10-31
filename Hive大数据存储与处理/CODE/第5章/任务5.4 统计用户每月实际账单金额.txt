@@ -1,0 +1,8 @@
+代码5-9 统计用户每月消费实付总额
+SELECT phone_no,round(AVG(should_pay-favour_fee),2) AS average
+ FROM mmconsume_billevents
+ GROUP BY phone_no,YEAR(year_month)
+ HAVING YEAR(year_month)=2022
+ ORDER BY average DESC
+ LIMIT 20;
+

@@ -1,0 +1,33 @@
+代码7-19  将账单数据清洗表mmconsume_billevents_clean中的数据导出
+INSERT OVERWRITE LOCAL DIRECTORY '/opt/zjsm_clean/mmconsume_billevents_clean' 
+ROW FORMAT DELIMITED FIELDS TERMINATED by ','
+SELECT * FROM mmconsume_billevents_clean;
+
+
+代码7-20  查看000000_0文件的前10条数据
+# 进入/opt/zjsm_clean/mmconsume_billevents_clean目录
+cd /opt/zjsm_clean/mmconsume_billevents_clean
+#查看000000_0文件的前10条数据
+cat 000000_0 | head -n 10
+
+
+代码7-21  保存mediamatch_usermsg_clean表
+# 将数据保存至Linux目录下
+INSERT OVERWRITE LOCAL DIRECTORY '/opt/zjsm_clean/mediamatch_usermsg_clean'
+ROW FORMAT DELIMITED FIELDS TERMINATED by ','
+SELECT * FROM mediamatch_usermsg_clean;
+# 将数据保存至HDFS目录下
+INSERT OVERWRITE DIRECTORY '/opt/zjsm_clean/mediamatch_usermsg_clean'
+ROW FORMAT DELIMITED FIELDS TERMINATED by ','
+SELECT * FROM mediamatch_usermsg_clean;
+
+
+代码7-22  查看保存结果
+# 进入/opt/zjsm_clean/mediamatch_usermsg_clean目录
+cd /opt/zjsm_clean/mediamatch_usermsg_clean
+# 查看保存至Linux目录下的结果
+cat 000000_0 | head -n 10
+# 查看保存至HDFS目录下的结果
+hdfs dfs -cat /opt/zjsm_clean/mediamatch_usermsg_clean/000000_0 | head -n 10
+
+

@@ -1,0 +1,78 @@
+代码6-12  查询用户数少于500名的用户等级名称
+# 查询用户数小于500的用户等级名称
+SELECT a.owner_name FROM (SELECT owner_name,COUNT(phone_no) AS count FROM media_index GROUP BY owner_name) a WHERE a.count < 500;
+
+
+代码6-13  设置允许在Map端进行聚合
+# 设置允许在Map端进行聚合
+SET hive.map.aggr = true;
+
+
+代码6-14  设置允许在Map端进行聚合操作的数据量
+# 设置允许在Map端进行聚合操作的数据量
+SET hive.groupby.mapaggr.checkinterval = 10000000;
+
+
+代码6-15  设置允许在发生数据倾斜时进行负载均衡
+# 设置允许在发生数据倾斜时进行负载均衡
+SET hive.groupby.skewindata = true;
+
+
+代码6-16  使用COUNT(DISTINCT)去重统计用户数
+# 使用COUNT(DISTINCT)去重统计用户数
+SELECT COUNT(DISTINCT phone_no) FROM media_index;
+
+
+代码6-17  使用GROUP BY分组后再使用COUNT函数统计的方式实现去重统计用户数
+# 使用GROUP BY分组后再使用COUNT函数统计的方式实现去重统计用户数
+SELECT COUNT(phone_no) FROM (SELECT phone_no FROM media_index GROUP BY phone_no) a;
+
+
+代码6-18  开启LIMIT语句优化参数
+# 开启对数据进行采样的功能
+SET hive.limit.optimize.enable=true;
+
+# 设置最小采样容量，默认为100000
+SET hive.limit.row.max.size=100000;
+
+# 可抽样的最大文件数，默认为10 
+SET hive.limit.optimize.limit.file=10;
+
+代码6-19  设置使用ORDER BY语句进行查询时必须使用LIMIT语句
+# 设置使用ORDER BY语句进行查询时必须使用LIMIT语句
+SET hive.strict.checks.orderby.no.limit = true;
+
+
+代码6-20  统计节目类型为直播的频道Top10
+# 创建视图
+CREATE VIEW IF NOT EXISTS media_index_Top10_view (
+phone_no,
+station_name,
+res_type)
+AS SELECT phone_no,station_name,res_type FROM media_index;
+
+# 将最大切分数据块的大小设置为128MB，增加map任务数
+SET mapreduce.input.fileinputformat.split.maxsize=134217728;
+
+# 设置reduce任务数为4
+SET mapreduce.job.reduces=4;
+
+# 设置允许在Map端进行聚合
+SET hive.map.aggr = true;
+
+# 设置允许在Map端进行聚合操作的数据量
+SET hive.groupby.mapaggr.checkinterval = 10000000;
+
+# 设置允许在发生数据倾斜时进行负载均衡
+SET hive.groupby.skewindata = true;
+
+# 开启任务并行执行
+SET hive.exec.parallel=true;
+
+# 设置使用ORDER BY语句进行查询时必须使用LIMIT语句
+SET hive.strict.checks.orderby.no.limit = true;
+
+# 统计节目类型为直播的频道Top10
+SELECT a.station_name,COUNT(a.phone_no) as users FROM (
+SELECT * FROM media_index_Top10_view WHERE res_type != '1') a
+GROUP BY a.station_name ORDER BY users DESC LIMIT 10;

@@ -1,0 +1,26 @@
+代码8-1  Hive远程服务的属性内容
+<property>
+	<name>hadoop.proxyuser.root.hosts</name>
+	<value>*</value>
+</property>
+<property>
+	<name>hadoop.proxyuser.root.groups</name>
+	<value>*</value>
+</property>
+
+
+代码8-2  分发配置文件至各子节点
+scp -r /usr/local/hadoop-3.1.4/etc/hadoop/core-site.xml slave1:/usr/local/hadoop-3.1.4/etc/hadoop/
+scp -r /usr/local/hadoop-3.1.4/etc/hadoop/core-site.xml slave2:/usr/local/hadoop-3.1.4/etc/hadoop/
+scp -r /usr/local/hadoop-3.1.4/etc/hadoop/core-site.xml slave3:/usr/local/hadoop-3.1.4/etc/hadoop/
+
+
+代码8-3  启动Hive远程服务
+cd /usr/local/hive-3.1.2/bin
+hive --service metastore &  //启动Hive元数据服务
+jps  //查看后台服务进程
+nohup hive --service hiveserver2 &  //后台启动HiveServer2服务
+jps  //查看后台服务进程
+
+
+

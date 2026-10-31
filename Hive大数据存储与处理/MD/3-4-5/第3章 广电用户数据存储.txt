@@ -1,0 +1,821 @@
+---
+marp: true
+headingDivider: 6
+theme: python-mini-pptx
+hiveserver2: nohup hive --service hiveserver2 > ~/hiveserver2.log 2>&1 &
+beeline: beeline -u jdbc:hive2://localhost:10000 -n zhangsan
+---
+
+
+
+<div class="cover"><h1>第3章 广电用户数据存储</h1><p>创建管理数据库·数据类型·创建管理表</p></div>
+
+## 任务背景
+新媒体的飞速发展，对传统媒体造成了巨大冲击。日益复杂、激烈的竞争，使得广电公司的用户流失问题变得异常突出。广电公司需要通过大数据分析技术，把握用户群体的特征和收视行为，了解用户的实际特征和实际需求。
+
+在进行数据分析之前，需要对广电业务数据进行存储操作，以奠定基础。本章将介绍如何将数据存储在Hive中，并结合广电业务实现创建**广电数据库**和**业务数据表**、**将业务数据从CSV文件中导入Hive表**。
+
+## 任务描述
+只有在Hive中创建了相关的业务数据表，才能进行业务数据的导入和后续的分析工作。
+
+本任务主要介绍Hive数据库的创建与管理、Hive的数据类型、Hive表的创建与管理，以及结合广电业务数据类型，设计表的结构，并在Hive中创建相应的业务数据表。
+
+### 操作Hive数据库
+在Hive中数据库本质上是表的目录或命名空间，可通过数据库将表组织成逻辑组。这对于具有很多组和用户的大集群来说，可以有效避免表命名冲突。
+
+HQL是Hive查询语言，和普遍使用的SQL一样，它不完全遵守任何一种ANSI SQL标准的修订版。Hive不支持行级插入操作、更新操作和删除操作，也不支持事务。
+
+基于Hadoop，Hive可以提供更高性能的扩展，以及一些个性化的扩展，甚至还增加了一些外部程序。Hive数据定义语言（Data Definition Language，DDL）可用于创建、修改和删除数据库、表、视图、函数和索引。对数据库的操作主要包括数据库的创建与管理，管理操作包括切换、修改、删除等。
+
+#### 1．创建数据库	
+用户可使用CREATE语句创建数据库。
+```sql
+CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] [database_name]
+[COMMENT database_comment]
+[LOCATION hdfs_path]
+[WITH DBPROPERTIES (property_name=property_value,...)];
+```
+
+CREATE语句的部分关键字介绍如下表。
+| 关键字 | 说明 |
+| --- | --- |
+| CREATE (DATABASE|SCHEMA) | 该关键字表示创建一个新数据库，其中DATABASE和SCHEMA关键字的功能相同，按个人习惯选择其中一个即可，本书统一使用DATABASE |
+| IF NOT EXISTS | 该关键字是可选的，使用该关键字可以避免因数据库已存在而抛出异常的情况 |
+| COMMENT | 该关键字是可选的，表示可以给数据库加上描述，类似于注释 |
+| LOCATION | 该关键字是可选的，表示在创建数据库时指定该数据库映射到HDFS的文件路径，数据库所在的目录位置为hive-site.xml文件属性hive.metastore.warehouse.dir所指定的顶层目录的下一级，默认是映射到/user/hive/warehouse目录下 |
+| WITH DBPROPERTIES | 该关键字是可选的，可用于设置数据库的属性，如添加创建人、创建时间等 |
+
+例如，创建数据库TestDB，同时使用IF NOT EXISTS关键字
+
+```hive
+CREATE DATABASE IF NOT EXISTS TestDB;	
+SHOW DATABASES;
+```
+避免因数据库已存在而抛出异常，在创建完成后使用“SHOW DATABASES;”命令查看Hive中所有数据库，运行结果如下。
+其中，DEFAULT数据库是默认的数据库，且需要注意的是，在Hive环境中，HQL对大小写不敏感，但为了美观和方便阅读，在本书中，HQL语句的关键字采用大写的形式。
+
+Hive会为每个数据库创建一个目录。数据库中的表将会以该数据库目录的子目录形式存储。有一个例外就是DEFAULT数据库中的表，DEFAULT数据库没有存储目录，因此DEFAULT数据库中的表将存储在/user/hive/warehouse目录下。
+当创建数据库TestDB时，Hive将会对应地创建一个HDFS目录/use/hive/warehouse/
+TestDB.db（数据库文件的扩展名是.db）。在浏览器登录“http://node0:9870”，单击“Utilities”，选择“Browse the file system”，查看“/use/hive/warehouse”，数据库列表如下。
+
+http://node0:9870/explorer.html#/user/hive/local/warehouse
+
+#### 2．管理数据库
+USE语句用于将某个数据库设置为用户当前的工作数据库，与在文件系统中切换工作目录类似，其语法介绍如下。
+```sql
+USE database_name;
+USE DEFAULT;
+```
+
+如果用户没有显式指定数据库，那么将会使用默认数据库DEFAULT。
+
+用户可以使用ALTER语句对数据库的DBPROPERTIES设置键值对（Key-Value）等属性值。
+```sql
+ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, ...);
+-- (Note: SCHEMA added in Hive 0.14.0)
+ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role;
+-- (Note: Hive 0.13.0 and later; SCHEMA adde	d in Hive 0.14.0)
+ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;
+-- (Note: Hive 2.2.1, 2.4.0 and later)
+ALTER (DATABASE|SCHEMA) database_name SET MANAGEDLOCATION hdfs_path;
+-- (Note: Hive 4.0.0 and later)
+```
+
+需要注意的是其他元数据库信息不可修改，如数据库名和数据库所在目录。
+使用“ALTER DATABASE ... SET LOCATION”不会将旧目录的内容移动到新的指定目录下，仅会在增加新表时将新表存储在新的指定目录下。
+
+用户可使用DROP语句删除数据库。
+
+```sql
+DROP （DATABASE|SCHEMA） [IF EXISTS] database_name [RESTRICT|CASCADE];
+```
+
+DROP语句语法的部分关键字介绍如下表。
+
+| 关键字 | 说明 |
+| --- | --- |
+| DROP （DATABASE|SCHEMA） | 表示删除数据库，DATABASE和SCHEMA的功能相同，本书统一使用DATABASE |
+| IF EXISTS | 可选，用于判断数据库是否存在 |
+| RESTRICT|CASCADE | 可选，表示当数据库中存在表时是否可以删除数据库，默认为RESTRICT，表示存在表时，不执行删除操作；CASCADE表示存在表时，仍执行删除操作 |
+
+### 了解Hive数据类型
+Hive数据类型主要分为基础数据类型和复合数据类型。
+
+基础数据类型有数值类型（整型、浮点型）、时间类型、字符串类型、其他类型（布尔类型、二进制）等；
+
+复合数据类型有数组类型、映射类型、结构体类型和联合体类型等。
+
+> Hive 用 Java 开发，其数据类型运行期全部以 Java 对象承载。其中一部分直接复用 JDK 标准库类型（如 `String`、`BigDecimal`），另一部分（如 `HiveDecimal`、Hive 版 `Timestamp`）是 Hive 团队自己用 Java 编写、封装在 `org.apache.hadoop.hive` 包下的类，目的是补足 JDK 类型在 SQL 语义、精度与时区处理上的不足。
+
+Hive数据类型说明如下表。
+
+| 分类 | 类型大类 | 类型小类 | 说明 | 举例 |
+| --- | --- | --- | --- | --- |
+| 基础 数据 类型 | 整型 | TINYINT | 1字节有符号整数 | 20 |
+|  |  | SMALLINT | 2字节有符号整数 | 20 |
+|  |  | INT | 4字节有符号整数 | 20 |
+|  |  | BIGINT | 8字节有符号整数 | 20 |
+|  | 布尔类型 | BOOLEAN | 布尔值 | true |
+| 基础 数据 类型 | 浮点型 | FLOAT | 单精度浮点数 | 3.14159 |
+|  |  | DOUBLE | 双精度浮点数 | 3.14159 |
+|  |  | DECIMAL | 高精度浮点数，精度为38位 | DECIMAL(12,2) |
+|  |  | NUMERIC | 同DECIMAL，从Hive 3.0开始提供 | NUMERIC(20,2) |
+|  | 字符串类型 | STRING、CHAR、VARCHAR | 字符串 | 'hello world' |
+|  | 二进制 | BINARY | 字节数组 | 01 |
+|  | 时间类型 | TIMESTAMP | 时间戳 | 1327882394 |
+|  |  | INTERVAL | 表示时间间隔 | INTERVAL '1' DAY |
+|  |  | DATE | 以年/月/日形式描述的日期，格式为YYYY-MM-DD | 2023-10-26 |
+| 复合 数据 类型 | 数组类型 | ARRAY | 一组有序字段，字段的数据的类型必须相同 | user[1] |
+|  | 映射类型 | MAP | 一组无序的键值对，键的类型必须是基础数据类型，值可以是任何类型的。同一个映射的键的类型必须相同，值的类型也必须相同 | user['name'] |
+|  | 结构体类型 | STRUCT | 一组命名的字段，字段类型可以不同 | user.age |
+|  | 联合体类型 | UNIONTYPE | 在有限取值范围内的一个值 | {1:{"col1":2,"col2":"b"}} |
+
+#### 1．基础数据类型
+Hive的基础数据类型也称为原始数据类型，Hive的基础数据类型都是参照Java接口进行定义的，具体使用细节和Java中相应类型基本一致，如STRING类型实现的是Java中的字符串（string），FLOAT类型实现的是Java定义的浮点数（float）。
+
+另外，值得注意的是，Hive中所有类型数据的定义名称均为系统保留字，不可作为变量使用。
+
+#### 2．复合数据类型
+在关系数据库中，字段的设计原则是通常不能再分解，且一般要满足第一范式（一个关系模式中的所有属性都是不可分的基础数据项）要求，
+
+而Hive则有所不同，Hive的表字段不仅可以是基础数据类型，还可以是复杂数据类型。
+Hive有4种常用的复杂数据类型，分别是数组（ARRAY）、映射（MAP）、结构体（STRUCT）和联合体（UNIONTYPE），相关说明如下。
+
+##### ARRAY
+
+ARRAY是具有相同类型变量的集合，集合内的变量称为数组元素，每个数组元素都有一个索引，索引从0开始。
+
+- 定义示例：ARRAY<STRING>。
+- 数据格式：'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'。
+- 使用示例：a[0]='Monday'，a[2]='Wednesday。
+- 其中，a表示表字段名，该字段的类型为数组，允许存储的数据数据为STRING，起始索引为0。
+
+##### MAP
+
+MAP是键值对的集合，其中键只能是基础数据类型，值可以是任意类型。
+
+- 定义示例：MAP<STRING,STRING>。
+- 数据格式：｛'B':'Banana','W':Watermelon}。
+- 使用示例：b['B']='Banana'。
+
+其中，b表示表字段名，该字段的类型为映射，允许存储一个＜STRING,STRING>类型的键值对，直接按键名访问即可。
+
+##### STRUCT
+
+STRUCT封装了一组有名字的字段（Named Field)，其类型可以是任意的基础数据类型，结构体内的元素使用“.”来访问。
+
+- 定义示例：STRUCT<fruit: STRING,weight:INT>。
+- 数据格式：｛'Banana',10}。
+- 使用示例：c.weight=10。
+
+其中，c表示表字段名，该字段的类型为STRUCT，包含两个元素“fruit”和“weight”，元素的访问方式与在Java中访问对象属性的方式一致。
+
+##### UNIONTYPE
+
+在给定的任意时刻，UNIONTYPE可以用于保存指定数据类型中的任意一种，类似于Java中的泛型，在任意时刻只有其中的一个类型生效。
+
+- 定义示例：UNIONTYPE<data_type,data_type,...>。
+  UNIONTYPE数据类型是在Hive 0.7.0中引入的，但Hive对此类型的完全支持仍然不完整。在JOIN、WHERE和GROUP BY子句中引用UNIONTYPE字段的查询将失败，并且Hive没有定义语法用于提取UNIONTYPE的标记或值字段，这意味着UNIONTYPE实际上仅用于传递。
+
+### 创建与管理Hive表
+- 根据存储位置，Hive表可分为内部表（也称为管理表）和外部表；
+- 根据表的分类方式，Hive表可分为分区表和分桶表；
+- 根据表的存活时间，Hive表可分为临时表和永久表（如内部表）。
+- 与Hive数据库的操作类似，可通过DDL实现Hive表的创建、修改、删除等操作。
+
+#### 1．创建表
+用户可使用CREATE语句创建表。
+```sql
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
+[(col_name data_type [column_constraint_specification] [COMMENT col_comment], ... [constraint_specification])]
+[COMMENT table_comment]
+[PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]
+[CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS]
+[ROW FORMAT row_format]
+[STORED AS file_format]
+[LOCATION hdfs_path]
+```
+
+CREATE语句的主要关键字说明如下表。
+
+| 关键字 | 说明 |
+| --- | --- |
+| CREATE TABLE | 用于创建指定名字的表。如果相同名字的表已经存在，那么抛出异常，用户可以用IF NOT EXISTS选项忽略该异常 |
+| TEMPORARY | 用于创建临时表。临时表是Hive表的一种特殊形式，临时表只对当前会话可见，被存储在用户的临时目录，并在会话结束时被删除 |
+| EXTERNAL | 用于创建外部表，在创建表的同时指定一个指向实际数据的路径（LOCATION）。Hive在创建内部表时，会将数据移动到Hive指向的路径；若创建外部表，则仅记录数据所在的路径，不对数据的位置做任何改变 |
+| PARTITIONED BY | 用于创建分区表，使用该关键字时需要加上分区字段的名称。一个表可以拥有一个或多个分区，并根据分区字段中的每个值创建一个单独的数据目录。分区以字段的形式存在于表中，通过DESCRIBE语句可以查看字段，但是该字段不存放实际的数据内容，仅仅是分区的表示 |
+| CLUSTERED BY | 用于创建桶表，使用该关键字时需要加上字段的名称。对于每一个内部表、外部表或分区表，Hive均可以进一步将其组织成桶，即桶是更细粒度的数据范围划分 |
+| ROW FORMAT | 用于设置创建的表在加载数据时支持的列分隔符。Hive默认的分隔符是\001，属于不可见字符 |
+| STORED AS | 如果文件数据是纯文本，那么用户可以使用STORED AS TEXTFILE语句。如果数据需要压缩，那么用户可以使用STORED AS SEQUENCEFILE语句 |
+| LOCATION | 用于指定加载数据路径（指定在HDFS上的位置）。针对外部表，创建时需要指定存储路径，不指定则使用默认路径。对内部表不用指定存储路径，默认存储路径为/user/hive/warehouse |
+
+Hive的5种数据表，即内部表、外部表、分区表、桶表和临时表的创建说明如下。
+#### （1）创建内部表
+内部表是Hive的默认表，表中的数据默认存储在warehouse目录中，当删除表时，表中的数据和元数据会被同时删除。
+内部表是Hive中比较常见、基础的表，表的创建方式与数据库的创建方式大致相同，字段间的分隔符默认为制表符“\t”，需要根据实际情况修改分隔符。
+
+例如，在TestDB数据库中创建一个职员信息表（employees），employees表字段说明如下表。
+
+```hive
+CREATE TABLE IF NOT EXISTS TestDB.employees(
+name STRING COMMENT 'Employee name',
+age INT,
+salary FLOAT COMMENT 'Employee salary',
+department STRING,
+subordinates ARRAY<STRING> COMMENT 'Names of subordinates',
+deductions MAP<STRING, FLOAT>  );
+```
+
+| 字段 | 描述 | 数据类型 |
+| --- | --- | --- |
+| name | 职员名字 | STRING |
+| age | 年龄 | INT |
+| salary | 工资 | FLOAT |
+| department | 所属部门 | STRING |
+| subordinates | 下属职员 | ARRAY<STRING> |
+| deductions | 扣款项目 | MAP<STRING, FLOAT> |
+
+创建内部表employees运行结果如下。
+
+```hive
+use TestDB;
+show tables;
+```
+
+#### （2）创建外部表
+外部表在导入HDFS上的数据后，数据并没有被移动到Hive目录下，只是与外部数据建立一个连接（映射关系），即外部表中的数据并不是由外部表来管理的。外部表被删除之后，元数据会被删除，但是实际数据还存放在原位置。
+
+创建外部表employees_external，同时通过LOCATION指定外部表employees_external数据的HDFS存储路径为“/ext/”（若无此路径，用户需要提前创建），运行结果如下。
+
+```hive
+use TestDB;
+CREATE  EXTERNAL  TABLE IF NOT EXISTS TestDB.employees_external(
+name STRING COMMENT 'Employee name',
+age INT,
+salary FLOAT COMMENT 'Employee salary',
+department STRING,
+subordinates ARRAY<STRING> COMMENT 'Names of subordinates',
+deductions MAP<STRING, FLOAT>  )
+LOCATION  '/ext/';
+```
+
+#### （3）创建分区表
+传统的数据库管理系统一般都具有表分区的功能，通过表分区能够在特定的区域检索数据，减少扫描成本，在一定程度上提高查询效率，另外还可以通过在分区上建立索引，进一步提高查询效率。
+
+Hive数据仓库中也有分区的概念，在逻辑上，分区表与未分区表没有区别，在物理上，分区表会将数据按照分区值存储在表目录的子目录中，目录名为“分区键”，即“键值”。其中需要注意的是分区键的值不一定要基于表的某一列（字段），可以指定任意值，只要查询时指定相应的分区键即可。可以对分区进行添加、删除、重命名、清空等操作。
+
+分区表可分为两类，即静态分区表和动态分区表。
+
+##### 静态分区表
+
+若分区数量和分区值是确定的，那么该分区表称为静态分区表，静态分区表不管表中有没有数据都将创建分区。
+例如，创建静态分区表employees_partition，指定静态分区表employees_partition按照country和state的值进行分区存储，运行结果如下。
+
+```hive
+use TestDB;
+CREATE TABLE IF NOT EXISTS TestDB.employees_partition(
+name  STRING  COMMENT  'Employee name',
+age INT,
+salary FLOAT COMMENT 'Employee salary',
+department STRING,
+subordinates ARRAY<STRING> COMMENT 'Names of subordinates',
+deductions MAP<STRING, FLOAT>  )		
+PARTITIONED BY (country STRING, state STRING);
+```
+
+##### 动态分区表
+
+动态分区表的分区数量和分区值是非确定的，由输入数据来确定，动态分区表的相关属性设置如下表。
+
+| 属性 | 描述 |
+| --- | --- |
+| hive.exec.dynamic.partition | 设置是否开启动态分区模式，true为允许创建动态分区 |
+| hive.exec.dynamic.partition.mode | 分区模式设置，默认值为strict。在strict模式中用户需要指定最少一个分区为静态分区，在nostrict模式中允许所有分区都是动态分区 |
+| hive.exec.max.dynamic.partitions | 允许动态分区的最大数量 |
+| hive.exec.max.dynamic.partitions.pernode | 单个节点上的Mapper/Reducer允许创建的最大分区 |
+
+例如，创建一个动态分区表employees_partition_dynamic，运行结果如下。
+
+```hive
+use TestDB;
+set hive.exec.dynamic.partition=true;  --开启动态分区模式
+set hive.exec.dynamic.partition.mode=nostrict;  --设置动态分区模式
+CREATE TABLE IF NOT EXISTS TestDB.employees_partition_dynamic(
+name  STRING  COMMENT  'Employee name',
+age INT,
+salary FLOAT COMMENT 'Employee salary',
+department STRING,
+subordinates ARRAY<STRING> COMMENT 'Names of subordinates',
+deductions MAP<STRING, FLOAT>  )
+PARTITIONED BY (country STRING, state STRING);
+```
+注意，尽量不要创建动态分区表，因为创建动态分区时，系统将会为每一个动态分区分配Reducer数量，所以当动态分区数量较多时，Reducer数量也将增加，将加大服务器负荷。
+
+#### （4）创建桶表
+Hive可以将整体数据划分成多个分区，从而优化查询。
+
+但是并非所有的数据都可以被合理分区，可能会出现每个分区数据量不一致的问题，有的分区数据量很大，有的分区数据量很小，产生数据倾斜。
+
+为了解决数据倾斜问题，Hive提供了分桶技术。分桶是指定桶表的某一列，让该列数据按照哈希取模的方式随机、均匀地分发到各个桶文件中。
+
+因为分桶操作需要根据某一列具体数据进行哈希取模，所以指定的分桶列必须基于表中的某一列（字段）。
+
+分桶改变了数据的存储方式，将哈希取模值相同或在某一个区间的数据放在同一个桶文件中，可提高查询效率。
+
+Hive中的数据是存储在HDFS中的，HDFS中的数据是不允许修改而只能添加的，那么在Hive中执行数据修改的命令时，就只能先找到对应的文件，读取后执行修改操作，然后重新写一份文件。
+
+此时若不采用分桶的操作，则当文件比较大时需要大量的IO读写，相反，若采用分桶的操作，则只需要找到存放文件对应的桶，然后读取再修改、写入即可，从而大大提高效率。
+
+创建桶表employees_cluster，指定桶表employees_cluster按照department进行分桶，每个桶中的数据按照列age降序（DESC）排列，指定的桶个数为3，运行结果如下。
+
+```hive
+use TestDB;
+CREATE TABLE IF NOT EXISTS TestDB.employees_cluster(
+name  STRING  COMMENT  'Employee name',
+age INT,
+salary FLOAT COMMENT 'Employee salary',
+department STRING,
+subordinates ARRAY<STRING> COMMENT 'Names of subordinates',
+deductions MAP<STRING, FLOAT>  )
+CLUSTERED BY  (department ) SORTED BY (age DESC)  INTO 3 BUCKETS;
+```
+
+需注意以下几点。
+
+- 桶个数是指在HDFS中桶表的存储目录下所生成相应文件的数量。
+- 桶表只能根据一列字段进行分桶。
+- 桶表可以与分区表同时使用，分区表的每个分区下都会有指定个数的桶。
+- 桶表中指定分桶的列可以与排序的列不相同。
+
+#### （5）创建临时表
+临时表也是一种表，因此针对表的操作同样可以应用于临时表。临时表不支持创建分区列，也不支持创建索引。
+
+如果同一数据库中的临时表与非临时表名称一致，那么会话内任何操作都会被解析为对临时表的操作，用户将无法访问同名的非临时表。
+
+例如，在数据库TestDB中创建临时表Course_Temp。
+
+```hive
+use TestDB;
+CREATE TEMPORARY TABLE TestDB.Course_Temp(id INT,course STRING)
+  ROW FORMAT DELIMITED FIELDS TERMINATED BY','
+  LINES TERMINATED BY '\n'
+  STORED AS textfile;
+```
+
+查看数据库TestDB中临时表Course_Temp的结构，如下。
+
+```hive
+DESC FORMATTED TestDB.Course_Temp
+```
+
+从执行结果可以看出，临时表Course_Temp在HDFS中的数据存储路径为
+
+hdfs:/node0:9820/tmp/hive/root
+
+该路径中/tmp/hive/为Hive配置文件hive-site.xml中参数hive.exec.scratchdir指定的临时目录，/root是根据当前用户名root创建的目录。
+
+在Hive CLI客户端中执行“exit;”命令退出当前会话，再次登录时使用Hive CLI客户端执行“USE TestDB;”命令进入数据库TestDB，然后查看Hive表，
+
+```hive
+SHOW TABLES;
+```
+
+发现数据库TestDB中已经不存在临时表Course_Temp。
+
+#### 2．管理表
+Hive支持对表的管理操作，包括修改表、删除表。查看表结构信息操作有利于用户了解表的表结构信息，这是管理表的基础。
+使用“SHOW TABLES;”命令可以列出当前数据库中的所有表。
+使用DESCRIBE命令可查看表的详细的表结构信息。
+
+```hive
+DESCRIBE  TestDB.employees;
+```
+查看employees表的结构信息，运行结果如下。其中DESCRIBE命令可简写成“DESC”。
+
+#### （1）修改表
+可以通过ALTER语句修改表的属性，该操作会同时修改元数据，但不会修改数据本身。使用ALTER语句进行表重命名的语法如下。
+```sql
+ALTER TABLE table_name RENAME TO new_table_name;
+```
+例如，有一份日志文件log_message，log_message数据说明如下表。
+
+| 字段 | 描述 | 数据类型 |
+| --- | --- | --- |
+| hms | 时间戳 | INT |
+| severity | 严重程度（ERROR\WARNING\INFO) | STRING |
+| server | 服务器名字 | STRING |
+| process\_id | 进程ID | INT |
+| message | 详细信息 | STRING |
+
+
+创建log_message表
+
+```hive
+USE TestDB;
+CREATE EXTERNAL TABLE IF NOT EXISTS  log_message (
+hms INT,
+severity STRING,
+server STRING,
+process_id INT,
+message STRING)
+PARTITIONED  BY  (year INT,  month  INT , day  INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED  BY  '\t';
+```
+
+使用ALTER语句将表重命名为log_message_new。
+
+```hive
+use TestDB;
+ALTER TABLE  log_message  RENAME  TO  log_message_new ;
+```
+查看当前表，如下。
+
+```hive
+show tables;
+```
+
+使用ALTER语句（通常适用于外部表）增加新的分区。
+
+```hive
+use TestDB;
+ALTER TABLE log_message_new  ADD IF NOT EXISTS
+  PARTITION(year = 2022, month = 1,day = 1 ) LOCATION '/user/hive/local/warehouse/testdb.db/log_message_new/2022/01/01'
+  PARTITION(year = 2022, month = 1,day = 2 ) LOCATION '/user/hive/local/warehouse/testdb.db/log_message_new/2022/01/02'
+  PARTITION(year = 2022, month = 1,day = 3 ) LOCATION '/user/hive/local/warehouse/testdb.db/log_message_new/2022/01/03';
+```
+
+> 登录HDFS网页端口：http://node0:9870/explorer.html#/user/hive/local/warehouse/testdb.db/log_message
+
+#### （2）删除表
+用户可通过DROP语句实现表的删除操作。
+```sql
+DROP TABLE [IF EXISTS] table_name;
+```
+用户在删除表时可选择是否使用IF EXISTS关键字。如果没有使用该关键字，且表并不存在时，将会抛出一个异常信息。
+例如，删除log_message表，如下。
+
+## 任务实现
+使用CREATE语句创建广电用户数据库`ZJSM`，并使用“IF NOT EXISTS”判断该数据库是否已经存在。
+
+```hive
+CREATE DATABASE IF NOT EXISTS ZJSM;
+```
+接下来将了解业务数据表结构，并在数据库ZJSM中完成业务数据表的创建。
+
+原始业务数据，主要有
+
+- 用户基本数据
+
+- 用户状态变更数据
+
+- 账单数据
+
+- 订单数据
+
+- 用户收视行为数据
+
+等5类数据，业务数据以CSV文件存储，相应表的简要说明如下。
+
+#### 用户基本数据表
+
+用户基本数据表记录的是用户最新状态数据。用户基本数据表对应的CSV文件名称为`mediamatch_usermsg.csv`，数据时间范围是1995年1月至2022年6月。用户基本数据表字段说明如下表。
+
+| 字段 | 描述 |
+| --- | --- |
+| terminal\_no | 用户地址编号 |
+| phone\_no | 用户编号 |
+| run\_name | 状态名称 |
+| run\_time | 状态变更时间 |
+| sm\_name | 品牌名称 |
+| sm\_code | 品牌编号 |
+| owner\_name | 用户等级名称 |
+| owner\_code | 用户等级编号 |
+| addressoj | 完整地址 |
+| force | 宽带是否生效 |
+| open\_time | 开户时间 |
+
+#### 根据用户基本数据表创建表mediamatch_usermsg
+
+```hive
+USE ZJSM;
+CREATE TABLE IF NOT EXISTS mediamatch_usermsg(
+terminal_no STRING,
+phone_no STRING,
+sm_name STRING,
+run_name STRING,
+sm_code STRING,
+owner_name STRING,
+owner_code STRING,
+run_time STRING,
+addressoj STRING,
+open_time STRING,
+force STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\;';
+```
+
+#### 用户状态变更数据表
+
+用户状态变更数据表用来记录用户所有时段的状态数据。用户状态变更数据表对应的CSV文件名称为`mediamatch_userevent.csv`，数据时间范围是1995年1月至2022年6月。用户状态变更数据表的字段说明如下表。
+
+| 字段 | 描述 |
+| --- | --- |
+| sum\_name | 品牌名称 |
+| run\_name | 状态名称 |
+| run\_time | 状态变更时间 |
+| owner\_name | 用户等级名称 |
+| owner\_code | 用户等级编号 |
+| open\_time | 开户时间 |
+
+#### 根据用户状态变更数据表创建表mediamatch_userevent
+
+```hive
+USE ZJSM;
+CREATE TABLE IF NOT EXISTS mediamatch_userevent(
+phone_no STRING,
+run_name STRING,
+run_time STRING,
+owner_name STRING,
+owner_code STRING,
+open_time STRING,
+sm_name STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\;';
+```
+
+#### 账单数据表
+
+账单数据表记录的是用户每月的账单数据，这些账单数据会在每月1号生成。账单数据表对应的CSV文件名称为`mmconsume_billevents.csv`，数据时间范围为2022年1月至2022年7月。账单数据表的字段说明如下表。
+
+| 字段 | 描述 |
+| --- | --- |
+| terminal\_no | 用户地址编号 |
+| phone\_no | 用户编号 |
+| fee\_code | 费用类型 |
+| year\_month | 账单时间 |
+| owner\_name | 用户等级名称 |
+| owner\_code | 用户等级编号 |
+| sm\_name | 品牌名称 |
+| should\_pay | 应收金额，单位：元 |
+| favour\_fee | 优惠金额（+代表优惠，-代表额外费用） |
+
+#### 根据账单数据表创建表mmconsume_billevents
+
+```hive
+USE ZJSM;
+CREATE TABLE IF NOT EXISTS mmconsume_billevents(
+terminal_no STRING,
+phone_no STRING,
+fee_code STRING,
+year_month STRING,
+owner_name STRING,
+owner_code STRING,
+sm_name STRING,
+should_pay STRING,
+favour_fee STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\;';
+```
+
+#### 订单数据表
+
+订单数据表记录的是用户的订购产品的数据，用户每订购一个产品，就会有相应的记录。订单数据表对应的CSV文件名称为`order_index.csv`，数据时间范围为2014年1月至2022年5月。订单数据表的字段说明如下表。
+
+| 字段 | 描述 |
+| --- | --- |
+| phone\_no | 用户编号 |
+| owner\_name | 用户等级名称 |
+| optdate | 产品订购状态更新时间 |
+| prodname | 订购产品名称 |
+| sm\_name | 品牌名称 |
+| offerid | 订购套餐编号 |
+| offername | 订购套餐名称 |
+| business\_name | 订购业务状态 |
+| owner\_code | 用户等级编号 |
+| prodprcid | 订购产品名称（带价格）的编号 |
+| prodprcname | 订购产品名称（带价格） |
+| effdate | 产品生效时间 |
+| expdate | 产品失效时间 |
+| orderdate | 产品订购时间 |
+| cost | 订购产品价格，单位：元 |
+| mode\_time | 产品标识，辅助标识电视主、附销售品 |
+| prodstatus | 订购产品状态 |
+| run\_name | 用户状态名 |
+| orderno | 订单编号 |
+| offertype | 订购套餐类型 |
+
+#### 根据订单数据表创建表order_index
+
+```hive
+USE ZJSM;
+CREATE TABLE IF NOT EXISTS order_index(
+phone_no STRING,
+owner_name STRING,
+optdate STRING,
+prodname STRING,
+sm_name STRING,
+offerid STRING,
+offername STRING,
+business_name STRING,
+owner_code STRING,
+prodprcid STRING,
+prodprcname STRING,
+effdate STRING,
+expdate STRING,
+orderdate STRING,
+cost STRING,
+mode_time STRING,
+prodstatus STRING,
+run_name STRING,
+orderno STRING,
+offertype STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\;';
+```
+
+#### 用户收视行为数据表
+
+用户收视行为数据表记录了用户观看电视的数据，其中观看方式可分为
+
+- 直播
+- 点播
+- 回看
+
+用户每切换一个频道都会生成一条新的记录。用户收视行为数据表对应的CSV文件名称是**media_index.csv**，数据时间范围是2022年5月至2022年7月。用户收视行为数据表的字段说明如下表。
+
+| 字段 | 描述 |
+| --- | --- |
+| terminal\_no | 用户地址编号 |
+| phone\_no | 用户编号 |
+| duration | 观看时长，单位为毫秒 |
+| station\_name | 直播频道名称 |
+| origin\_time | 观看行为开始时间 |
+| end\_time | 观看行为结束时间 |
+| owner\_code | 用户等级编号 |
+| owner\_name | 用户等级名称 |
+| vod\_cat\_tags | 视频点播节目包相关信息（是一组数组类型数据），按不同的节目包目录组织 |
+| resolution | 点播节目的清晰度 |
+| audio\_lang | 点播节目的语言类别 |
+| region | 节目地区信息 |
+| res\_name | 设备名称 |
+| res\_type | 节目类型，0代表直播，1代表点播或回看 |
+| vod\_title | 视频点播节目名称 |
+| category\_name | 节目所属分类 |
+| program\_title | 直播节目名称 |
+| sm\_name | 品牌名称 |
+
+
+#### 根据用户收视行为数据表创建表media_index
+
+```hive
+USE ZJSM;
+CREATE TABLE IF NOT EXISTS media_index(
+terminal_no STRING,
+phone_no STRING,
+duration STRING,
+station_name STRING,
+origin_time STRING,
+end_time STRING,
+owner_code STRING,
+owner_name STRING,
+vod_cat_tags ARRAY<STRUCT<level1_name: STRING,level2_name: STRING,level3_name: STRING,level4_name: STRING, level5_name: STRING>>,
+resolution STRING,
+audio_lang STRING,
+region STRING,
+res_name STRING,
+res_type STRING,
+vod_title STRING,
+category_name STRING,
+program_title STRING,
+sm_name STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\;';
+```
+
+## 任务描述
+通过Hive实现数据的分析功能，需要将数据保存在Hive中。
+
+Hive提供了数据管理语言（Data Manipulation Language，DML），使用LOAD语句可实现数据的装载。
+
+本任务介绍将数据装载至Hive表，并使用LOAD语句将广电业务数据导入Hive表中的方式。
+
+### 装载数据至Hive表中
+Hive不支持行级别的数据插入、更新和删除操作，往表中装载数据的唯一途径就是使用一种“大量”的数据装载操作，或将文件写入正确的目录。
+数据装载语句LOAD的语法介绍如下。
+```sql
+LOAD DATA [LOCAL] INPATH 'filepath'
+[OVERWRITE] INTO TABLE tablename
+[PARTITION (partcol1=val1, partcol2=val2 ...)]
+```
+
+LOAD语句语法的部分关键字说明如下表。
+
+| 关键字 | 说明 |
+| --- | --- |
+| LOCAL | 若有LOCAL关键字，则表示导入Linux系统本地的数据，若没有LOCAL关键字，则表示从HDFS导入数据。如果将HDFS中的数据导入Hive表，那么HDFS中存储的数据文件会被移动到表目录下，因此原位置不再有存储的数据文件 |
+| OVERWRITE | 加入OVERWRITE关键字，表示导入模式为覆盖模式，即覆盖表之前的数据；若不加OVERWRITE关键字，则表示导入模式为追加模式，即不清空表之前的数据 |
+| PARTITION | 如果创建的是分区表，那么导入数据时需要使用PARTITION关键字指定分区字段的名称 |
+
+##### 在本地~目录中建立文件course.txt
+
+course.txt文件内容如下表。
+
+```bash
+ # 1,语文 2,数学 3,英语 
+ [zhangsan@node0 ~]$ echo " 1,语文 2,数学 3,英语 " >> course.txt
+ [zhangsan@node0 ~]$ cat  course.txt
+```
+
+##### 将course.txt上传到HDFS的/course/目录下
+
+```bash
+[zhangsan@node0 ~]$ hdfs dfs -mkdir /course
+[zhangsan@node0 ~]$ hdfs dfs -put ~/course.txt /course/
+```
+
+##### 创建course表后，将文件内容数据导入course表
+
+```hive
+USE TestDB;
+CREATE TABLE TestDB.course(id INT,course STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+LOAD DATA INPATH '/course/course.txt' INTO TABLE TestDB.course;
+```
+
+> 登录HDFS网页端口
+>
+> http://node0:9870/explorer.html#/user/hive/local/warehouse/testdb.db/course
+
+
+
+## 任务实现
+广电用户数据有5个原始表，这5个原始表分别为
+
+- mediamatch_usermsg（用户基本数据表）、
+- mediamatch_userevent（用户状态变更数据表）、
+- mmconsume_billevents（账单数据表）、
+- order_index（订单数据表）、
+- media_index（用户收视行为数据表），
+
+可通过scp将对应文件上传到Linux文件系统/opt/data目录下。
+
+```powershell
+scp  D:\studybigdata\code\data\hive\guangdian\* zhangsan@node0:/opt/data/
+```
+
+
+
+在导入数据前，需要对表头进行处理，可使用命令“sed -i '1d'”删除数据首行字段名。
+
+```bash
+[zhangsan@node0 ~]$ sed -i '1d' /opt/data/media_index.csv
+[zhangsan@node0 ~]$ sed -i '1d' /opt/data/mediamatch_userevent.csv
+[zhangsan@node0 ~]$ sed -i '1d' /opt/data/mediamatch_usermsg.csv
+[zhangsan@node0 ~]$ sed -i '1d' /opt/data/mmconsume_billevents.csv
+[zhangsan@node0 ~]$ sed -i '1d' /opt/data/order_index.csv
+```
+
+##### sed
+
+`sed -i` 是 **sed（流编辑器）** 的就地编辑模式。
+
+- `sed` = stream editor，用来对文本做查找/替换等处理
+- `-i` = **in-place**（就地），直接修改原文件，而不是只把结果输出到屏幕
+
+- `1` → 指定行号为第 1 行（也可写 `1,5` 表示 1 到 5 行，`$` 表示最后一行）
+- `d` → delete（删除）命令
+
+
+
+将文件mediamatch_usermsg.csv中的数据导入用户基本数据表中
+
+```hive
+USE ZJSM;
+LOAD DATA LOCAL INPATH '/opt/data/mediamatch_usermsg.csv' OVERWRITE INTO TABLE mediamatch_usermsg;
+```
+将mediamatch_userevent.csv中的数据导入用户状态变更数据表中
+
+```hive
+LOAD DATA LOCAL INPATH '/opt/data/mediamatch_userevent.csv' OVERWRITE INTO TABLE mediamatch_userevent;
+```
+
+将mmconsume_billevents.csv中的数据导入账单数据表中
+
+```hive
+LOAD DATA LOCAL INPATH '/opt/data/mmconsume_billevents.csv' OVERWRITE INTO TABLE mmconsume_billevents;
+```
+
+将order_index.csv中的数据导入订单数据表中
+
+```hive
+LOAD DATA LOCAL INPATH '/opt/data/order_index.csv' OVERWRITE INTO TABLE order_index;
+```
+
+将media_index.csv中的数据导入用户收视行为数据表中
+
+```hive
+LOAD DATA LOCAL INPATH '/opt/data/media_index.csv' OVERWRITE INTO TABLE media_index;
+```
+
+最后查询账单数据表中的前5行数据进行验证，（SELECT语句的语法将在第4章详细说明），账单数据表中的前5行数据查询结果如下。。
+
+```hive
+SELECT * FROM mmconsume_billevents LIMIT 5;
+```
+
+### 小结
+本章详细介绍了Hive的基础数据类型和复杂数据类型，Hive数据库、表的创建与管理。接着介绍了Hive的数据管理语言中的LOAD语句，实现了Hive数据导入的相关操作，并结合广电大数据案例，使用Hive实现了广电业务数据表的创建及表数据的导入，为后续使用Hive解决具体的实际问题奠定了存储基础。

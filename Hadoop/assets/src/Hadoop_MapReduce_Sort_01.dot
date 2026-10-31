@@ -1,0 +1,14 @@
+digraph Hadoop_MapReduce_Sort_01 {
+  graph [fontname="Microsoft YaHei", ranksep=0.6, nodesep=0.45, rankdir=TB, bgcolor="transparent"]
+  node  [fontname="Microsoft YaHei", fontsize=13, margin="0.16,0.09", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  edge  [color="#888780", fontname="Microsoft YaHei", fontsize=11, fontcolor="#5F5E5A", arrowsize=0.7]
+  A [label="Map 读切片", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  B [label="环形缓冲区\nspill 内排序", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  C [label="spill 归并\nmap 端整体有序", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  D [label="Reduce 拉取\n再归并", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  E [label="输出\nreduce 内有序", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  A -> B
+  B -> C
+  C -> D
+  D -> E
+}

@@ -1,0 +1,20 @@
+digraph arch {
+    graph [fontname="Microsoft YaHei", label="ZooKeeper 集群架构", fontsize=16, rankdir=LR];
+    node [fontname="Microsoft YaHei", shape=box, style="rounded,filled", fillcolor="#EAF2F8"];
+    edge [fontname="Microsoft YaHei"];
+
+    subgraph cluster_c { label="客户端"; style=dashed; color="#888";
+        C1 [label="Client A"]; C2 [label="Client B"];
+    }
+    subgraph cluster_s { label="ZooKeeper 集群"; style=dashed; color="#888";
+        L [label="Leader", shape=ellipse, fillcolor="#D5F5E3"];
+        F1 [label="Follower", shape=ellipse];
+        F2 [label="Follower", shape=ellipse];
+        O [label="Observer", shape=ellipse, fillcolor="#FCF3CF"];
+    }
+    C1 -> L [label="读写"];
+    C2 -> F1 [label="读写"];
+    L -> F1 [dir=both, label="Proposal/Commit"];
+    L -> F2 [dir=both, label="Proposal/Commit"];
+    L -> O [dir=both, style=dashed, label="同步(不投票)"];
+}

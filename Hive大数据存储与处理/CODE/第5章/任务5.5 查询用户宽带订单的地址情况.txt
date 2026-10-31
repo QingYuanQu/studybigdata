@@ -1,0 +1,44 @@
+代码5-10 查询产生账单时用户的状态
+SELECT u.phone_no,u.run_name,b.fee_code,b.year_month
+ FROM mmconsume_billevents AS b
+ INNER JOIN
+ mediamatch_usermsg AS u
+ ON b.phone_no=u.phone_no;
+
+代码5-11 查询所有用户的状态
+SELECT u.phone_no,u.run_name,b.fee_code,b.year_month
+ FROM mediamatch_usermsg AS u
+ LEFT JOIN
+ mmconsume_billevents AS b
+ ON b.phone_no=u.phone_no;
+
+代码5-12 左半开连接查询错误示范
+SELECT u.phone_no,u.run_name, b.fee_code,b.year_month
+ FROM mediamatch_usermsg AS u
+ LEFT SEMI JOIN
+ mmconsume_billevents AS b
+ ON b.phone_no=u.phone_no;
+
+代码5-13 左半开连接查询
+SELECT u.phone_no,u.run_name
+ FROM mediamatch_usermsg AS u
+ LEFT SEMI JOIN
+ mmconsume_billevents AS b
+ ON b.phone_no=u.phone_no;
+
+代码5-14 查询所有产生订单及账单的客户的客户编号以及客户等级情况
+SELECT phone_no,owner_code,owner_name
+ FROM mmconsume_billevents
+ UNION ALL
+ SELECT phone_no,owner_code,owner_name
+ FROM order_index;
+
+代码5-15 查询用户宽带订单的地址情况
+SELECT o.phone_no,o.prodname,u.addressoj
+ FROM order_index o 
+ INNER JOIN
+ mediamatch_usermsg u
+ ON o.phone_no=u.phone_no
+ WHERE o.prodname LIKE '%联合宽带%';
+
+

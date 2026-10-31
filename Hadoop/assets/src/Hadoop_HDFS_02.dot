@@ -1,0 +1,21 @@
+digraph {
+    graph [fontname="Microsoft YaHei", label="传统文件系统  vs  HDFS（逻辑 vs 物理落地）", labelloc="t"];
+    node [fontname="Microsoft YaHei", shape="box", style="rounded,filled"];
+    edge [fontname="Microsoft YaHei"];
+    subgraph cluster_linux { label="传统 Linux 文件系统"; style="dashed"; color="#666"; fontname="Microsoft YaHei";
+        Lapp [label="应用程序", fillcolor="#FFF3E0"];
+        Lvfs [label="VFS / ext4\n(inode表 + 数据块)", fillcolor="#E8F0FE"];
+        Lblk [label="块设备\n(磁盘 4KB 块)", fillcolor="#E8F5E9"];
+        Lapp -> Lvfs [label="read / write"];
+        Lvfs -> Lblk [label="按块寻址"];
+    }
+    subgraph cluster_hdfs { label="HDFS（分布式封装）"; style="dashed"; color="#666"; fontname="Microsoft YaHei";
+        Happ [label="客户端 Client", fillcolor="#FFF3E0"];
+        Hnn [label="NameNode\n(元数据)", fillcolor="#E3F2FD"];
+        Hdn [label="DataNode\n(数据块)", fillcolor="#E8F5E9"];
+        Hhost [label="宿主 FS (ext4)\n+ 块设备", fillcolor="#E8F5E9"];
+        Happ -> Hnn [label="1 元数据"];
+        Happ -> Hdn [label="2 数据块"];
+        Hdn -> Hhost [label="普通文件写入"];
+    }
+}
