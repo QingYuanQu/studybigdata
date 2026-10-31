@@ -1,6 +1,6 @@
 name: 部署笔记站
 
-# push 到 main 分支时自动构建并发布到 GitHub Pages
+# push 到 main 分支时自动构建并发布到 QingYuanQu.github.io (自定义域名 www.studybigdata.com)
 on:
   push:
     branches: [main]
@@ -9,11 +9,7 @@ on:
   workflow_dispatch:      # 允许在 GitHub 网页手动点一下重新部署
 
 permissions:
-  contents: write
-
-concurrency:
-  group: pages-${{ github.ref }}
-  cancel-in-progress: false
+  contents: read          # 仅读源码；推 io 仓库用 GH_TOKEN secret
 
 jobs:
   deploy:
@@ -33,10 +29,13 @@ jobs:
       - name: 安装依赖
         run: pip install -r requirements.txt
 
-      - name: 配置提交身份
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: 构建站点
+        run: mkdocs build --clean
 
-      - name: 构建并推送到 gh-pages 分支
-        run: mkdocs gh-deploy --force --clean
+      - name: 部署到 QingYuanQu.github.io 的 gh-pages 分支
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git remote add io https://github.com/QingYuanQu/QingYuanQu.github.io.git || true
+          git remote set-url io https://x-access-token:${GH_TOKEN}@github.com/QingYuanQu/QingYuanQu.github.io.git
+          mkdocs gh-deploy --remote-name io --force
