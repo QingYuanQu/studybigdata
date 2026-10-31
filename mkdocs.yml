@@ -29,11 +29,10 @@ theme:
   language: zh
   icon:
     repo: fontawesome/brands/github
+  custom_dir: docs/overrides        # 自定义覆盖：隐藏 header + 侧边栏注入
   features:
     - navigation.instant          # 站内秒开，无需整页刷新
     - navigation.tracking         # 滚动时高亮当前位置
-    - navigation.tabs             # 顶层做标签页（章节多时好用）
-    - navigation.tabs.sticky
     - navigation.top              # 回到顶部
     - navigation.indexes          # 目录可点击作为索引页
     - navigation.footer
@@ -47,18 +46,22 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: blue-grey          # 素净低饱和主色
+      accent: teal                # 点睛强调色
       toggle:
         icon: material/weather-night
         name: 切换到深色模式
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: blue-grey
+      accent: teal
       toggle:
         icon: material/weather-sunny
         name: 切换到浅色模式
+
+# ---------- 自定义样式（隐藏 header 等） ----------
+extra_css:
+  - overrides/extra.css
 
 # ---------- Markdown 扩展 ----------
 markdown_extensions:
