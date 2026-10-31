@@ -38,6 +38,8 @@ jobs:
         run: |
           cd _site
           touch .nojekyll
+          # 把自定义域名写进产物，否则 --force 推送会冲掉 io 仓库的 CNAME，导致域名失效
+          cp "${GITHUB_WORKSPACE}/CNAME" CNAME 2>/dev/null || printf '%s\n' "www.studybigdata.com" > CNAME
           git init -q
           git checkout -q -B gh-pages
           git add -A
