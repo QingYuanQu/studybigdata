@@ -22,3 +22,17 @@
 .md-header a:hover {
   color: #ffe5e5;
 }
+
+/* ============================================================
+   移动端侧边栏（抽屉）顶部标题栏也改为正红
+   匹配 .md-nav--primary .md-nav__title[for=__drawer]
+   ============================================================ */
+.md-nav--primary .md-nav__title[for=__drawer] {
+  background-color: #e60012 !important;   /* 正红，覆盖 blue-grey 主色 */
+  color: #ffffff !important;
+}
+
+/* 抽屉顶部返回图标也统一为白色 */
+.md-nav--primary .md-nav__title[for=__drawer] .md-nav__icon {
+  color: #ffffff !important;
+}
