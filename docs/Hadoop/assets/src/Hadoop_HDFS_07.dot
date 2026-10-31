@@ -1,0 +1,11 @@
+digraph {
+    graph [fontname="Microsoft YaHei"];
+    node [fontname="Microsoft YaHei", shape="box", style="rounded,filled", fillcolor="#E8F0FE"];
+    edge [fontname="Microsoft YaHei", style="rounded"];
+    rankdir=LR;
+    A [label="客户端 请求读取文件", fillcolor="#FFF3E0"];
+    B [label="NameNode 返回\n块位置(就近)"];
+    C [label="客户端直连 DataNode\n读取数据块"];
+    D [label="按块顺序拼接\n完成读取"];
+    A -> B -> C -> D;
+}

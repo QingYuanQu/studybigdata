@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "sessions": [
+    {
+      "id": "01a11e60-4352-7660-a965-3509c8382aaf",
+      "title": "Format Hive chapter markdown document",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "",
+      "createdAt": 1791511445816,
+      "updatedAt": 1791513854474,
+      "messageCount": 91
+    },
+    {
+      "id": "01a11e81-1a0a-7a39-8d92-e98e6325161c",
+      "title": "Format Hive chapter markdown document",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "hy4-preview",
+      "createdAt": 1791513140047,
+      "updatedAt": 1791513140047,
+      "messageCount": 0
+    },
+    {
+      "id": "01a11e9f-44c2-7774-8c58-ab009198ca66",
+      "title": "Hive CLI列名显示与beeline设置",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "custom-local:deepseek-v4-pro",
+      "createdAt": 1791515117062,
+      "updatedAt": 1791515198263,
+      "messageCount": 3
+    },
+    {
+      "id": "01a11f8c-6d06-7969-82fe-1a06b7093601",
+      "title": "检查Hive文档中GROUP BY描述规范",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "hy4-preview",
+      "createdAt": 1791530659312,
+      "updatedAt": 1791530796610,
+      "messageCount": 4
+    },
+    {
+      "id": "01a11f98-0d15-78f9-8fbe-156f1294ea20",
+      "title": "当前正在编辑的文档：D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD…",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "hy4-preview",
+      "createdAt": 1791531421160,
+      "updatedAt": 1791531483168,
+      "messageCount": 5
+    },
+    {
+      "id": "01a11fab-b453-7f82-9e12-2ffd2854b433",
+      "title": "编辑 Hive 排序查询片段",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "hy4-preview",
+      "createdAt": 1791532709146,
+      "updatedAt": 1791533378695,
+      "messageCount": 12
+    },
+    {
+      "id": "01a11fba-684b-77c6-99bc-eda18266d0f0",
+      "title": "当前正在编辑的文档：D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD…",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "hy4-preview",
+      "createdAt": 1791533672741,
+      "updatedAt": 1791535460714,
+      "messageCount": 17
+    },
+    {
+      "id": "01a11fd6-6209-7ba1-98c8-ed7888f7569a",
+      "title": "编辑Hive DISTRIBUTE BY示例效果",
+      "cwd": "D:\\studybigdata\\source\\_posts\\Hive\\Hive大数据存储与处理\\MD",
+      "model": "auto",
+      "createdAt": 1791535506131,
+      "updatedAt": 1791539287499,
+      "messageCount": 47
+    }
+  ]
+}

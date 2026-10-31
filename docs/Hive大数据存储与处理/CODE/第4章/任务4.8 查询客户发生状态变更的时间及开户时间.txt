@@ -1,0 +1,15 @@
+代码4-32 使用正则表达式引用列名
+SELECT 'phone.*'
+FROM  mediamatch_usermsg;
+
+代码4-33 设置hive.support.quoted.identifiers属性值
+set hive.support.quoted.identifiers = none;
+
+代码4-34 使用正则表达式模糊匹配字段名
+SELECT `phone.*`
+FROM  mediamatch_usermsg;
+
+代码4-35 查询客户发生状态变更的时间以及开户时间
+SELECT `.*_time`
+FROM  mediamatch_userevent;
+

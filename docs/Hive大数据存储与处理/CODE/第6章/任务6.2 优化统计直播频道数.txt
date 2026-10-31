@@ -1,0 +1,51 @@
+代码6-5  将hive.fetch.task.conversion的值设置为none并查询表数据
+# 将hive.fetch.task.conversion的值设置为none
+SET hive.fetch.task.conversion=none;
+SELECT * FROM media_index LIMIT 5;
+
+
+代码6-6  设置在map任务执行前合并小文件
+SET hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;
+
+
+代码6-7  将最大切分数据块的大小设置为128MB再统计广电用户收视行为数据表的记录数
+# 128MB等于134217728字节
+SET mapreduce.input.fileinputformat.split.maxsize=134217728;
+SELECT count(*) FROM media_index;
+
+
+代码6-8  查询Hive中的reduce任务处理的数据量和最大可执行reduce任务数
+# reduce任务处理的数据量
+SET hive.exec.reducers.bytes.per.reducer;
+# 最大可执行reduce任务数
+SET hive.exec.reducers.max;
+
+
+代码6-9  设置reduce任务数为4
+# 设置reduce任务数为4
+set mapreduce.job.reduces=4;
+
+
+代码6-10  Hive的并行执行配置
+# 开启任务并行执行
+SET hive.exec.parallel=true;
+# HQL允许的最大并行度
+SET hive.exec.parallel.thread.number=8;
+
+
+代码6-11  优化统计直播频道数
+# 创建视图
+CREATE VIEW IF NOT EXISTS media_index_station_view (
+station_name)
+AS SELECT station_name FROM media_index;
+
+# 将最大切分数据块的大小设置为128MB，增加map任务数
+SET mapreduce.input.fileinputformat.split.maxsize=134217728;
+
+# 开启任务并行执行
+SET hive.exec.parallel=true;
+
+# 去重统计直播频道数
+SELECT COUNT(DISTINCT station_name) FROM media_index_station_view;
+
+

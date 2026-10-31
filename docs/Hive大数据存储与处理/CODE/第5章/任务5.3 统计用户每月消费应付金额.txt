@@ -1,0 +1,5 @@
+代码5-8 统计用户每月消费应付总额
+SELECT phone_no,YEAR(year_month),MONTH(year_month),SUM(should_pay)
+ FROM mmconsume_billevents
+ GROUP BY phone_no,YEAR(year_month),MONTH(year_month);
+

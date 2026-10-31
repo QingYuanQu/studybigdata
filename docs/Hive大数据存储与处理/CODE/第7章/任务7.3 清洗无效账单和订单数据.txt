@@ -1,0 +1,23 @@
+代码7-16  查询无效账单数据的数量
+# 统计应收金额小于0的数据
+SELECT COUNT(1)
+FROM mmconsume_billevents
+WHERE should_pay < 0;
+
+
+代码7-17  查询无效订单数据数量
+# 查询无效订单数据的数量
+SELECT COUNT(*)
+FROM order_index
+WHERE cost IS NULL
+OR
+cost < 0;
+
+
+代码7-18  删除无效账单数据
+CREATE TABLE IF NOT EXISTS mmconsume_billevents_clean
+AS
+SELECT * FROM mmconsume_billevents
+WHERE should_pay >= 0 ;
+
+

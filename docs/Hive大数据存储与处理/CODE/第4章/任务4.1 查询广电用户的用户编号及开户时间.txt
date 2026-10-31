@@ -1,0 +1,15 @@
+代码4-1 SELECT语句示例
+SELECT sm_code ,  sm_name
+FROM  mediamatch_usermsg;
+
+代码4-2 “*”通配符示例
+SELECT * 
+FROM  mediamatch_usermsg;
+
+代码4-3 表别名示例
+SELECT * 
+FROM  mediamatch_usermsg AS `用户信息表`;
+
+代码4-4 查询广电用户的用户编号及开户时间
+SELECT  phone_no, open_time 
+FROM  mediamatch_usermsg; 

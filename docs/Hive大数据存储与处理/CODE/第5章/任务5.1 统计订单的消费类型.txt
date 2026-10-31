@@ -1,0 +1,35 @@
+代码5-1 查看Hive中提供的内置函数的命令
+SHOW FUNCTIONS;
+
+代码5-2 使用条件函数
+SELECT phone_no,mode_time,
+CASE mode_time
+WHEN 'Y' THEN '主销售产品'
+WHEN 'N' THEN '附销售产品'
+ELSE '无效标识'
+END
+FROM order_index;
+
+代码5-3 使用条件函数与列别名结合使用
+SELECT phone_no,mode_time,
+CASE mode_time
+WHEN 'Y' THEN '主销售产品'
+WHEN 'N' THEN '附销售产品'
+ELSE '无效标识'
+END AS `产品标识`
+FROM order_index;
+
+代码5-4 使用类型转换函数
+SELECT CAST(99 AS DOUBLE);
+
+代码5-5 统计订单的消费类型
+SELECT distinct phone_no,orderno, prodprcname,CAST(cost as float) as cost_f,
+CASE
+WHEN cost>=2000.0 THEN '高消费'
+WHEN cost>=1000.0 AND cost<2000.0 THEN '中等消费'
+ELSE '低消费'
+END AS type
+FROM order_index
+ORDER BY cost_f DESC;
+
+

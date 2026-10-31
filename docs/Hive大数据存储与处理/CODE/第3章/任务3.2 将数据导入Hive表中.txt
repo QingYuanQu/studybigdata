@@ -1,0 +1,27 @@
+代码3-18  导入数据
+[root@master opt]# hdfs dfs -mkdir /course
+[root@master opt]# hdfs dfs -put /opt/course.txt /course/
+[root@master opt]#hive
+hive>USE TestDB;
+hive>CREATE TABLE TestDB.course(id INT,course STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+hive>LOAD DATA INPATH '/course/course.txt' INTO TABLE TestDB.course;
+
+
+代码3-19  删除数据首行字段名
+sed -i '1d' /opt/data/media_index.csv
+sed -i '1d' /opt/data/mediamatch_userevent.csv
+sed -i '1d' /opt/data/mediamatch_usermsg.csv
+sed -i '1d' /opt/data/mmconsume_billevents.csv
+sed -i '1d' /opt/data/order_index.csv
+
+
+代码3-20  导入数据至Hive表中并简单查询数据
+USE ZJSM;
+LOAD DATA LOCAL INPATH '/opt/data/mediamatch_usermsg.csv' OVERWRITE INTO TABLE mediamatch_usermsg;
+LOAD DATA LOCAL INPATH '/opt/data/mediamatch_userevent.csv' OVERWRITE INTO TABLE mediamatch_userevent;
+LOAD DATA LOCAL INPATH '/opt/data/mmconsume_billevents.csv' OVERWRITE INTO TABLE mmconsume_billevents;
+LOAD DATA LOCAL INPATH '/opt/data/order_index.csv' OVERWRITE INTO TABLE order_index;
+LOAD DATA LOCAL INPATH '/opt/data/media_index.csv' OVERWRITE INTO TABLE media_index;
+SELECT * FROM mmconsume_billevents LIMIT 5;
+
+

@@ -1,0 +1,13 @@
+digraph ZooKeeper_Principles_02 {
+  graph [fontname="Microsoft YaHei", ranksep=0.6, nodesep=0.45, rankdir=TB, bgcolor="transparent"]
+  node  [fontname="Microsoft YaHei", fontsize=13, margin="0.16,0.09", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  edge  [color="#888780", fontname="Microsoft YaHei", fontsize=11, fontcolor="#5F5E5A", arrowsize=0.7]
+  A [label="写方", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  B [label="监听方", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  zk_test [label="注册 Watcher", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  WatchedEvent [label="NodeDataChanged", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  S [label="S", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  S -> A
+  S -> B
+  S -> A
+}

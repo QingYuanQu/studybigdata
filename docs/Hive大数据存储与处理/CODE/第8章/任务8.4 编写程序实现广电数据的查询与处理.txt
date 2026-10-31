@@ -1,0 +1,103 @@
+代码8-11  查询数据
+    public void selectAll(String tbName){
+        String sql="SELECT * FROM "+tbName;
+        if (tbName.equals("mediamatch_userevent")) {
+            try {
+                stmt = getConn().createStatement();
+                rs = stmt.executeQuery(sql);
+                while (rs.next()) {
+                    System.out.println(
+                            rs.getString("phone_no") + "\t" +
+                                    rs.getString("run_name") + "\t" +
+                                    rs.getString("run_time") + "\t" +
+                                    rs.getString("owner_name") + "\t" +
+                                    rs.getString("owner_code") + "\t" +
+                                    rs.getString("open_time")
+                    );
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+代码8-12  删除无效用户数据
+    public void cleanTable1(String dbName){
+        try {
+            stmt=getConn().createStatement();
+            stmt.execute("USE "+dbName);
+            String sql;
+            sql = "CREATE TABLE IF NOT EXISTS mediamatch_usermsg_clean\n"+
+                   "AS   \n"+
+                   "SELECT * FROM mediamatch_usermsg \n "+
+                   "WHERE \n "+ 
+                   "owner_code NOT IN ('2','9','10')  \n "+
+                   "AND  \n"+
+                   "owner_name NOT IN ('EA级','EB级','EC级','ED级','EE级') \n "+
+                   "AND \n "+
+                   "sm_name IN ('数字电视','互动电视','珠江宽频','甜果电视') \n "+
+                   "AND  \n"+
+                   "run_name IN ('正常','欠费暂停','主动暂停','主动销户')";
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+代码8-13  删除无效收视行为数据
+public void cleanTable2(String dbName){
+        try {
+            stmt=getConn().createStatement();
+            stmt.execute("USE "+dbName);
+            String sql;
+            sql = "CREATE TABLE IF NOT EXISTS media_index_clean \n"+
+                   "AS   \n"+
+                   "SELECT * FROM media_index \n "+
+                   "WHERE \n "+ 
+                   "(CAST(duration AS double)/1000 >= 20  \n "+
+                   "AND  \n"+
+                   "CAST(duration AS double)/(1000*60*60) < 5 \n "+
+                   "AND \n "+
+                   "res_type='0' \n "+
+                   "AND  \n"+
+                   "origin_time NOT LIKE '%00'  \n"+
+                   "AND  \n"+
+                   "end_time NOT LIKE '%00') \n"+
+                   "OR \n"+
+                   "(CAST(duration AS double)/1000 >= 20 \n"+
+                   "AND  \n"+
+                   "CAST(duration AS double)/(1000*60*60) < 5 \n"+
+                   "AND  \n"+
+                   "res_type='1')  ";
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+}
+
+
+代码8-14  删除无效账单数据
+public void cleanTable3(String dbName){
+        try {
+            stmt=getConn().createStatement();
+            stmt.execute("USE "+dbName);
+            String sql;
+            sql = "CREATE TABLE IF NOT EXISTS mmconsume_billevents_clean \n"+
+                   "AS   \n"+
+                   "SELECT * FROM mmconsume_billevents \n "+
+                   "WHERE should_pay >= 0  ";
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+}

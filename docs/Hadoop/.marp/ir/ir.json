@@ -1,0 +1,5479 @@
+{
+  "version": 1,
+  "chrome": {
+    "pageNumber": {
+      "color": "#8a97a5",
+      "font": "Microsoft YaHei",
+      "fontSizePt": 13,
+      "bottom": 0.1458,
+      "right": 0.25,
+      "left": null,
+      "top": null
+    }
+  },
+  "canvas": {
+    "widthIn": 13.3333,
+    "heightIn": 7.5,
+    "pxWidth": 1920,
+    "pxHeight": 1080
+  },
+  "theme": {
+    "name": "python-mini-pptx",
+    "cssHash": "cd69057f73ce"
+  },
+  "slides": [
+    {
+      "index": 0,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 1,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.3657,
+            "w": 12.1667,
+            "h": 1.0855
+          },
+          "style": {
+            "fontSizePt": 52,
+            "font": "Microsoft YaHei",
+            "color": "#1f4e79",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.2528
+          },
+          "runs": [
+            {
+              "text": "实验：Computer 对象序列化"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.7882,
+            "y": 3.7733,
+            "w": 11.7953,
+            "h": 1.2915
+          },
+          "style": {
+            "fontSizePt": 20,
+            "font": "Microsoft YaHei",
+            "color": "#6b5220",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "runs": [
+            {
+              "text": "配套教程：4-3-1 ~ 4-3-5（Student → DataOut → Serializable → Writable → MapReduce 里的序列化）。"
+            },
+            {
+              "br": true
+            },
+            {
+              "text": " 这次不用 Student，换成一台真实存在的机器——"
+            },
+            {
+              "text": "你自己电脑上的 Computer",
+              "style": {
+                "color": "#c0392b",
+                "bold": true
+              }
+            },
+            {
+              "text": "。"
+            }
+          ],
+          "container": "quote"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.7462,
+            "w": 12.1667,
+            "h": 0.9041
+          },
+          "style": {
+            "fontSizePt": 42,
+            "font": "Microsoft YaHei",
+            "color": "#1f4e79",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.2042
+          },
+          "runs": [
+            {
+              "text": "一、实验目的"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.8545,
+            "w": 12.1667,
+            "h": 2.8555
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0729,
+            "spaceAfterIn": 0
+          },
+          "items": [
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "学会用 "
+                },
+                {
+                  "text": "InetAddress",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 获取本机的主机名和 IP 地址；"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0438,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "独立实现一个自定义 "
+                },
+                {
+                  "text": "Writable",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 类（"
+                },
+                {
+                  "text": "ComputerWritable",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": "），掌握 "
+                },
+                {
+                  "text": "write",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " / "
+                },
+                {
+                  "text": "readFields",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 的对称写法；"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "把自定义 Writable 用到 MapReduce 中作为 map 输出的 value，理解 shuffle 阶段的对象序列化；"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "体会 Reducer 中「同一个实例反复填值」的规则及其陷阱。"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.697,
+            "w": 12.1667,
+            "h": 0.9041
+          },
+          "style": {
+            "fontSizePt": 42,
+            "font": "Microsoft YaHei",
+            "color": "#1f4e79",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.2042
+          },
+          "runs": [
+            {
+              "text": "二、实验环境"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "geo": {
+            "x": 0.5833,
+            "y": 3.8053,
+            "w": 12.1667,
+            "h": 0.9539
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0729,
+            "spaceAfterIn": 0
+          },
+          "items": [
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "JDK 8、Maven 工程（依赖 hadoop-client 3.1.3）"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0438,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "Windows 本地模式即可运行（"
+                },
+                {
+                  "text": "winutils.exe",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 已配置）"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "layout": "mixed",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "geo": {
+            "x": 0.5833,
+            "y": 3.298,
+            "w": 12.1667,
+            "h": 0.9041
+          },
+          "style": {
+            "fontSizePt": 42,
+            "font": "Microsoft YaHei",
+            "color": "#1f4e79",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "runs": [
+            {
+              "text": "三、实验一：ComputerWritable 本地序列化"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.9438,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.1 先拿到真实数据：本机的主机名和 IP"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.6993,
+            "w": 12.1667,
+            "h": 0.9088
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "在写 Writable 类之前，先用两行 JDK 自带的代码，看看你自己的机器长什么样。"
+            },
+            {
+              "br": true
+            },
+            {
+              "text": " 在任意类的 "
+            },
+            {
+              "text": "main",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " 方法里写："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.6956,
+            "w": 12.1667,
+            "h": 1.8606
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " java.net.InetAddress;"
+              }
+            ],
+            [
+              {
+                "text": "InetAddress",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "local",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " InetAddress.getLocalHost();"
+              }
+            ],
+            [
+              {
+                "text": "System.out.println("
+              },
+              {
+                "text": "\"hostname = \"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + local.getHostName());"
+              }
+            ],
+            [
+              {
+                "text": "System.out.println("
+              },
+              {
+                "text": "\"localIP  = \"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + local.getHostAddress());"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.1627,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.1 先拿到真实数据：本机的主机名和 IP"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.9182,
+            "w": 12.1667,
+            "h": 0.452
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "运行后输出类似（各人机器不同）："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.4577,
+            "w": 12.1667,
+            "h": 0.8833
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "hostname = DESKTOP-3F8KQ2"
+              }
+            ],
+            [
+              {
+                "text": "localIP  = 192.168.1.105"
+              }
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 4.4285,
+            "w": 12.1667,
+            "h": 0.9088
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0
+          },
+          "runs": [
+            {
+              "text": "这两个值，就是第一个 "
+            },
+            {
+              "text": "Computer",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " 对象的真实数据。其余机器的数据我们手工编造（见实验二的样例数据）。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.8418,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.2 定义 ComputerWritable"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.5974,
+            "w": 12.1667,
+            "h": 0.9136
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "在 "
+            },
+            {
+              "text": "entity",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " 包里新建 "
+            },
+            {
+              "text": "ComputerWritable",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "，字段三个："
+            },
+            {
+              "text": "id",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "（int）、"
+            },
+            {
+              "text": "hostname",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "（String）、"
+            },
+            {
+              "text": "ip",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "（String）。"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.5984,
+            "w": 12.1667,
+            "h": 0.452
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "要求（对照 4-3-4 篇 StudentWritable 的六步）："
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "geo": {
+            "x": 0.5833,
+            "y": 4.1379,
+            "w": 12.1667,
+            "h": 1.4764
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0729,
+            "spaceAfterIn": 0
+          },
+          "items": [
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "必须有无参构造",
+                  "style": {
+                    "color": "#c0392b",
+                    "bold": true
+                  }
+                },
+                {
+                  "text": "——Hadoop 反序列化时先反射 new 空对象，再 "
+                },
+                {
+                  "text": "readFields",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 填值；"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0438,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "write",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 与 "
+                },
+                {
+                  "text": "readFields",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " "
+                },
+                {
+                  "text": "字段顺序必须完全一致",
+                  "style": {
+                    "color": "#c0392b",
+                    "bold": true
+                  }
+                },
+                {
+                  "text": "：id → hostname → ip；"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "String 字段用 "
+                },
+                {
+                  "text": "writeUTF",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " / "
+                },
+                {
+                  "text": "readUTF",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": "，int 字段用 "
+                },
+                {
+                  "text": "writeInt",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " / "
+                },
+                {
+                  "text": "readInt",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": "。"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.1162,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.2 定义 ComputerWritable"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.8717,
+            "w": 12.1667,
+            "h": 2.5121
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "package",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " com.studybigdata.hadoop.java.entity;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.io.Writable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " java.io.DataInput;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " java.io.DataOutput;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " java.io.IOException;"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.6502,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.2 定义 ComputerWritable"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4057,
+            "w": 12.1667,
+            "h": 5.4441
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "/**",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " * 一台机器：编号、主机名、IP。",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " * 实现 Writable 后可以作为 MapReduce 中 map 输出的 value 跨机器传输。",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " */",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "class",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "implements",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Writable",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": " {"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "private",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "int",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " id;"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "private",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " String hostname;"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "private",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " String ip;"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "// 必须有无参构造：框架反序列化的第一步是 new 空对象",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "() {"
+              }
+            ],
+            [
+              {
+                "text": "    }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "("
+              },
+              {
+                "text": "int",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " id, String hostname, String ip) {"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".id = id;"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.6502,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.2 定义 ComputerWritable"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4057,
+            "w": 12.1667,
+            "h": 5.4441
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".hostname = hostname;"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".ip = ip;"
+              }
+            ],
+            [
+              {
+                "text": "    }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "int",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "getId",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "() { "
+              },
+              {
+                "text": "return",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " id; }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "setId",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "("
+              },
+              {
+                "text": "int",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " id) { "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".id = id; }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " String "
+              },
+              {
+                "text": "getHostname",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "() { "
+              },
+              {
+                "text": "return",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " hostname; }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "setHostname",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(String hostname) { "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".hostname = hostname; }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " String "
+              },
+              {
+                "text": "getIp",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "() { "
+              },
+              {
+                "text": "return",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " ip; }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "setIp",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(String ip) { "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".ip = ip; }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "// 序列化：三个字段的顺序是约定，写好后不可单方面改动",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "@Override",
+                "style": {
+                  "color": "#0550ae"
+                }
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "write",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(DataOutput out) "
+              },
+              {
+                "text": "throws",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " IOException {"
+              }
+            ],
+            [
+              {
+                "text": "        out.writeInt(id);"
+              }
+            ],
+            [
+              {
+                "text": "        out.writeUTF(hostname);"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.6502,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.2 定义 ComputerWritable"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4057,
+            "w": 12.1667,
+            "h": 5.4441
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "        out.writeUTF(ip);"
+              }
+            ],
+            [
+              {
+                "text": "    }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "// 反序列化：读取顺序必须和 write 完全一致",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "@Override",
+                "style": {
+                  "color": "#0550ae"
+                }
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "readFields",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(DataInput in) "
+              },
+              {
+                "text": "throws",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " IOException {"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".id = in.readInt();"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".hostname = in.readUTF();"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "this",
+                "style": {
+                  "color": "#0b7285"
+                }
+              },
+              {
+                "text": ".ip = in.readUTF();"
+              }
+            ],
+            [
+              {
+                "text": "    }"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "@Override",
+                "style": {
+                  "color": "#0550ae"
+                }
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " String "
+              },
+              {
+                "text": "toString",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "() {"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "return",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "\"ComputerWritable{id=\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + id + "
+              },
+              {
+                "text": "\", hostname='\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + hostname + "
+              },
+              {
+                "text": "\"', ip='\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + ip + "
+              },
+              {
+                "text": "\"'}\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": ";"
+              }
+            ],
+            [
+              {
+                "text": "    }"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "layout": "mixed",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 3.0935,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.2 定义 ComputerWritable"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.849,
+            "w": 12.1667,
+            "h": 0.5575
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.7038,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.3 写出去、读回来"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4593,
+            "w": 12.1667,
+            "h": 0.4568
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "仿照 4-3-4 篇的 "
+            },
+            {
+              "text": "StudentWritableOut",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " / "
+            },
+            {
+              "text": "StudentWritableIn",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "，写两个测试类验证："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.0036,
+            "w": 12.1667,
+            "h": 4.7925
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "// ComputerOut：写出",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "c1",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "("
+              },
+              {
+                "text": "1",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": ","
+              }
+            ],
+            [
+              {
+                "text": "        InetAddress.getLocalHost().getHostName(),"
+              }
+            ],
+            [
+              {
+                "text": "        InetAddress.getLocalHost().getHostAddress());"
+              }
+            ],
+            [
+              {
+                "text": "DataOutputStream",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "dos",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "DataOutputStream",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "("
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "FileOutputStream",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "("
+              },
+              {
+                "text": "\"computer.bin\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": "));"
+              }
+            ],
+            [
+              {
+                "text": "c1.write(dos);"
+              }
+            ],
+            [
+              {
+                "text": "dos.close();"
+              }
+            ],
+            [
+              {
+                "text": "// ComputerIn：读回",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "c2",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "();   "
+              },
+              {
+                "text": "// 先有对象，再填值",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "DataInputStream",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "dis",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "DataInputStream",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "("
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "FileInputStream",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "("
+              },
+              {
+                "text": "\"computer.bin\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": "));"
+              }
+            ],
+            [
+              {
+                "text": "c2.readFields(dis);"
+              }
+            ],
+            [
+              {
+                "text": "dis.close();"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "layout": "mixed",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 3.0935,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.3 写出去、读回来"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.849,
+            "w": 12.1667,
+            "h": 0.5575
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "System.out.println(c2);"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.3232,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "3.4 预期结果"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.0787,
+            "w": 12.1667,
+            "h": 0.452
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "控制台打印出与写入一致的对象："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.6182,
+            "w": 12.1667,
+            "h": 0.5575
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "ComputerWritable{id=1, hostname='DESKTOP-3F8KQ2', ip='192.168.1.105'}"
+              }
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 4.2632,
+            "w": 12.1667,
+            "h": 0.9136
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0
+          },
+          "runs": [
+            {
+              "text": "另外右键查看 "
+            },
+            {
+              "text": "computer.bin",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " 文件大小：约 30 字节左右（4 + 长度前缀+字符 + 长度前缀+字符）。可以和 4-3-3 篇 "
+            },
+            {
+              "text": "Serializable",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " 的 127 字节对比，体会 Writable 的紧凑。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "layout": "mixed",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.9334,
+            "w": 12.1667,
+            "h": 1.6332
+          },
+          "style": {
+            "fontSizePt": 42,
+            "font": "Microsoft YaHei",
+            "color": "#1f4e79",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "runs": [
+            {
+              "text": "四、实验二：MapReduce 对象序列化——机房心跳稽核"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.6736,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.1 业务背景：Reduce 阶段干什么"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.4292,
+            "w": 12.1667,
+            "h": 0.9088
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "机房里的每台机器会周期性向监控服务器上报一条心跳："
+            },
+            {
+              "text": "编号,主机名,IP",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "。"
+            },
+            {
+              "br": true
+            },
+            {
+              "text": " 运维关心两件事："
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "geo": {
+            "x": 0.5833,
+            "y": 3.4255,
+            "w": 12.1667,
+            "h": 0.9478
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0729,
+            "spaceAfterIn": 0.0729
+          },
+          "items": [
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "每台机器上报了几次",
+                  "style": {
+                    "color": "#c0392b",
+                    "bold": true
+                  }
+                },
+                {
+                  "text": "（掉线的机器次数会偏少）；"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0438,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "同一台主机每次上报的 IP 是否一致",
+                  "style": {
+                    "color": "#c0392b",
+                    "bold": true
+                  }
+                },
+                {
+                  "text": "（机器被重装或被抢占 DHCP 后会换 IP，是异常）。"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 4.4607,
+            "w": 12.1667,
+            "h": 1.3656
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0
+          },
+          "runs": [
+            {
+              "text": "所以 Reduce 按 "
+            },
+            {
+              "text": "hostname",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " 分组，统计"
+            },
+            {
+              "text": "上报次数 + 出现过的所有 IP",
+              "style": {
+                "color": "#c0392b",
+                "bold": true
+              }
+            },
+            {
+              "text": "。这就是 value 必须是整个 "
+            },
+            {
+              "text": "ComputerWritable",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": " 对象而不是单个文本的理由——IP 是随心跳一起传过来的结构化数据。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.8036,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.2 样例数据"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.5591,
+            "w": 12.1667,
+            "h": 0.9088
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "data/writable/computers.txt",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "，12 行心跳（注意 node3 有一次上报用了不同的 IP）："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.5554,
+            "w": 12.1667,
+            "h": 4.141
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "1,node1,192.168.1.101"
+              }
+            ],
+            [
+              {
+                "text": "2,node2,192.168.1.102"
+              }
+            ],
+            [
+              {
+                "text": "3,node3,192.168.1.103"
+              }
+            ],
+            [
+              {
+                "text": "4,node1,192.168.1.101"
+              }
+            ],
+            [
+              {
+                "text": "5,node2,192.168.1.102"
+              }
+            ],
+            [
+              {
+                "text": "6,node3,192.168.1.103"
+              }
+            ],
+            [
+              {
+                "text": "7,node1,192.168.1.101"
+              }
+            ],
+            [
+              {
+                "text": "8,node4,192.168.1.104"
+              }
+            ],
+            [
+              {
+                "text": "9,node3,10.0.0.103"
+              }
+            ],
+            [
+              {
+                "text": "10,node4,192.168.1.104"
+              }
+            ],
+            [
+              {
+                "text": "11,node2,192.168.1.102"
+              }
+            ],
+            [
+              {
+                "text": "12,node1,192.168.1.101"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.7038,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.3 Mapper"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4593,
+            "w": 12.1667,
+            "h": 0.4568
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "四个泛型中，第 4 个是本实验的主角 "
+            },
+            {
+              "text": "ComputerWritable",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.0036,
+            "w": 12.1667,
+            "h": 4.7925
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "package",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " com.studybigdata.hadoop.mapred.cserializable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " com.studybigdata.hadoop.java.entity.ComputerWritable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.io.LongWritable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.io.Text;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.mapreduce.Mapper;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " java.io.IOException;"
+              }
+            ],
+            [
+              {
+                "text": "/**",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " * 把每行 \"id,hostname,ip\" 解析成 ComputerWritable，key 用主机名，便于按机器分组。",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " */",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "class",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerMapper",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "extends",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Mapper",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "<LongWritable, Text, Text, ComputerWritable> {"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.6502,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.3 Mapper"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4057,
+            "w": 12.1667,
+            "h": 5.4441
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "private",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "final",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Text",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "outKey",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Text",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "();"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "private",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "final",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "outValue",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerWritable",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "();"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "@Override",
+                "style": {
+                  "color": "#0550ae"
+                }
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "protected",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "map",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(LongWritable key, Text value, Context context)"
+              }
+            ],
+            [
+              {
+                "text": "            "
+              },
+              {
+                "text": "throws",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " IOException, InterruptedException {"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "String",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "line",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " value.toString().trim();"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "if",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " (line.isEmpty()) {"
+              }
+            ],
+            [
+              {
+                "text": "            "
+              },
+              {
+                "text": "return",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": ";"
+              }
+            ],
+            [
+              {
+                "text": "        }"
+              }
+            ],
+            [
+              {
+                "text": "        String[] parts = line.split("
+              },
+              {
+                "text": "\",\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": ");"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "if",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " (parts.length < "
+              },
+              {
+                "text": "3",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": ") {"
+              }
+            ],
+            [
+              {
+                "text": "            "
+              },
+              {
+                "text": "return",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": ";"
+              }
+            ],
+            [
+              {
+                "text": "        }"
+              }
+            ],
+            [
+              {
+                "text": "        outValue.setId(Integer.parseInt(parts["
+              },
+              {
+                "text": "0",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": "].trim()));"
+              }
+            ],
+            [
+              {
+                "text": "        outValue.setHostname(parts["
+              },
+              {
+                "text": "1",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": "].trim());"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.4419,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.3 Mapper"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.1975,
+            "w": 12.1667,
+            "h": 1.8606
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "        outValue.setIp(parts["
+              },
+              {
+                "text": "2",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": "].trim());"
+              }
+            ],
+            [
+              {
+                "text": "        outKey.set(outValue.getHostname());"
+              }
+            ],
+            [
+              {
+                "text": "        context.write(outKey, outValue);"
+              }
+            ],
+            [
+              {
+                "text": "    }"
+              }
+            ],
+            [
+              {
+                "text": "}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.6502,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.4 Reducer（本实验的核心）"
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4057,
+            "w": 12.1667,
+            "h": 5.4441
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "package",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " com.studybigdata.hadoop.mapred.cserializable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " com.studybigdata.hadoop.java.entity.ComputerWritable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.io.Text;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.mapreduce.Reducer;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " java.io.IOException;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " java.util.TreeSet;"
+              }
+            ],
+            [
+              {
+                "text": "/**",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " * 按主机名统计上报次数，并收集出现过的所有 IP。",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " * IP 集合超过 1 个说明该主机换过 IP，标记为异常。",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": " */",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "class",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerReducer",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "extends",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Reducer",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "<Text, ComputerWritable, Text, Text> {"
+              }
+            ],
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "@Override",
+                "style": {
+                  "color": "#0550ae"
+                }
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.6502,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.4 Reducer（本实验的核心）"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4057,
+            "w": 12.1667,
+            "h": 5.4441
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "protected",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "reduce",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(Text key, Iterable<ComputerWritable> values, Context context)"
+              }
+            ],
+            [
+              {
+                "text": "            "
+              },
+              {
+                "text": "throws",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " IOException, InterruptedException {"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "int",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "count",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "0",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": ";"
+              }
+            ],
+            [
+              {
+                "text": "        TreeSet<String> ips = "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "TreeSet",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "<>();"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "for",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " (ComputerWritable c : values) {"
+              }
+            ],
+            [
+              {
+                "text": "            count++;"
+              }
+            ],
+            [
+              {
+                "text": "            "
+              },
+              {
+                "text": "// 关键：必须当场把 ip 取出来。values 里自始至终是同一个实例，",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "            "
+              },
+              {
+                "text": "// 框架每次循环前用 readFields 重新填值；把 c 本身存起来最后全是最后一条的数据。",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "            ips.add(c.getIp());"
+              }
+            ],
+            [
+              {
+                "text": "        }"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "String",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "remark",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " ips.size() == "
+              },
+              {
+                "text": "1",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": " ? "
+              },
+              {
+                "text": "\"正常\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " : "
+              },
+              {
+                "text": "\"异常：检测到 \"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + ips.size() + "
+              },
+              {
+                "text": "\" 个 IP\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": ";"
+              }
+            ],
+            [
+              {
+                "text": "        context.write(key, "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Text",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(count + "
+              },
+              {
+                "text": "\" 次, IP=\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + ips + "
+              },
+              {
+                "text": "\", \"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": " + remark));"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.9306,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.4 Reducer（本实验的核心）"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.6861,
+            "w": 12.1667,
+            "h": 0.8833
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "    }"
+              }
+            ],
+            [
+              {
+                "text": "}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.5954,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.5 Driver"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.3509,
+            "w": 12.1667,
+            "h": 0.9088
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "对照 4-3-5 篇的 "
+            },
+            {
+              "text": "StudentAvgJob",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "，唯一必须写对的是这一行——框架靠它选择序列化器、靠它反射 new 空对象："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 4.3472,
+            "w": 12.1667,
+            "h": 0.5575
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "job.setMapOutputValueClass(ComputerWritable.class);"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4646,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.5 Driver"
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.2202,
+            "w": 12.1667,
+            "h": 3.8152
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "package",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " com.studybigdata.hadoop.mapred.cserializable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " com.studybigdata.hadoop.java.entity.ComputerWritable;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.conf.Configuration;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.fs.Path;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.io.Text;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.mapreduce.Job;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.mapreduce.lib.input.FileInputFormat;"
+              }
+            ],
+            [
+              {
+                "text": "import",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;"
+              }
+            ],
+            [
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "class",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "ComputerJob",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": " {"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 0.6502,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.5 Driver"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 1.4057,
+            "w": 12.1667,
+            "h": 5.4441
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "    "
+              },
+              {
+                "text": "public",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "static",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "void",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "main",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(String[] args) "
+              },
+              {
+                "text": "throws",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " Exception {"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "String",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "input",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " args.length > "
+              },
+              {
+                "text": "0",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": " ? args["
+              },
+              {
+                "text": "0",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": "] : "
+              },
+              {
+                "text": "\"data/writable/computers.txt\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": ";"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "String",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "output",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " args.length > "
+              },
+              {
+                "text": "1",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": " ? args["
+              },
+              {
+                "text": "1",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": "] : "
+              },
+              {
+                "text": "\"data/writable/output-computer\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": ";"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "Configuration",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "conf",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Configuration",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "();"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "Job",
+                "style": {
+                  "color": "#cf222e"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "job",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "=",
+                "style": {
+                  "color": "#0550ae"
+                }
+              },
+              {
+                "text": " Job.getInstance(conf, "
+              },
+              {
+                "text": "\"computer-heartbeat\"",
+                "style": {
+                  "color": "#0a7d32"
+                }
+              },
+              {
+                "text": ");"
+              }
+            ],
+            [
+              {
+                "text": "        job.setJarByClass(ComputerJob.class);"
+              }
+            ],
+            [
+              {
+                "text": "        job.setMapperClass(ComputerMapper.class);"
+              }
+            ],
+            [
+              {
+                "text": "        job.setReducerClass(ComputerReducer.class);"
+              }
+            ],
+            [
+              {
+                "text": "        "
+              },
+              {
+                "text": "// Map 输出类型：value 是我们自定义的 Writable",
+                "style": {
+                  "color": "#7a8b99",
+                  "italic": true
+                }
+              }
+            ],
+            [
+              {
+                "text": "        job.setMapOutputKeyClass(Text.class);"
+              }
+            ],
+            [
+              {
+                "text": "        job.setMapOutputValueClass(ComputerWritable.class);"
+              }
+            ],
+            [
+              {
+                "text": "        job.setOutputKeyClass(Text.class);"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "layout": "code",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.9533,
+            "w": 12.1667,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.5 Driver"
+            },
+            {
+              "text": " （续）",
+              "style": {
+                "bold": false
+              }
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.7088,
+            "w": 12.1667,
+            "h": 2.8379
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "        job.setOutputValueClass(Text.class);"
+              }
+            ],
+            [
+              {
+                "text": "        FileInputFormat.addInputPath(job, "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Path",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(input));"
+              }
+            ],
+            [
+              {
+                "text": "        FileOutputFormat.setOutputPath(job, "
+              },
+              {
+                "text": "new",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": " "
+              },
+              {
+                "text": "Path",
+                "style": {
+                  "color": "#1f4e79",
+                  "bold": true
+                }
+              },
+              {
+                "text": "(output));"
+              }
+            ],
+            [
+              {
+                "text": "        System.exit(job.waitForCompletion("
+              },
+              {
+                "text": "true",
+                "style": {
+                  "color": "#8250df"
+                }
+              },
+              {
+                "text": ") ? "
+              },
+              {
+                "text": "0",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": " : "
+              },
+              {
+                "text": "1",
+                "style": {
+                  "color": "#b3401f"
+                }
+              },
+              {
+                "text": ");"
+              }
+            ],
+            [
+              {
+                "text": "    }"
+              }
+            ],
+            [
+              {
+                "text": "}"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.8369,
+            "w": 12.1668,
+            "h": 0.5903
+          },
+          "style": {
+            "fontSizePt": 34,
+            "font": "Microsoft YaHei",
+            "color": "#2e75b6",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.1653
+          },
+          "runs": [
+            {
+              "text": "4.6 预期结果"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 2.5924,
+            "w": 12.1668,
+            "h": 0.4568
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0.0875
+          },
+          "runs": [
+            {
+              "text": "data/writable/output-computer/part-r-00000",
+              "style": {
+                "color": "#b3401f",
+                "font": "Cascadia Mono"
+              }
+            },
+            {
+              "text": "（按主机名字典序）："
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "geo": {
+            "x": 0.5833,
+            "y": 3.1367,
+            "w": 12.1668,
+            "h": 1.5348
+          },
+          "style": {
+            "fontSizePt": 17,
+            "font": "Cascadia Mono",
+            "color": "#23303f",
+            "lineSpacing": 1.38,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0
+          },
+          "lines": [
+            [
+              {
+                "text": "node1    4 次, IP=[192.168.1.101], 正常"
+              }
+            ],
+            [
+              {
+                "text": "node2    3 次, IP=[192.168.1.102], 正常"
+              }
+            ],
+            [
+              {
+                "text": "node3    3 次, IP=[10.0.0.103, 192.168.1.103], 异常：检测到 2 个 IP"
+              }
+            ],
+            [
+              {
+                "text": "node4    2 次, IP=[192.168.1.104], 正常"
+              }
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "geo": {
+            "x": 0.5833,
+            "y": 4.759,
+            "w": 12.1668,
+            "h": 0.904
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0875,
+            "spaceAfterIn": 0
+          },
+          "runs": [
+            {
+              "text": "自检：4+3+3+2 = 12 行，与输入行数一致；node3 的两个 IP 正是第 6、9 行埋的\"换 IP\"。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "layout": "title+body",
+      "background": {
+        "color": "#ffffff"
+      },
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 2,
+          "geo": {
+            "x": 0.5833,
+            "y": 1.3026,
+            "w": 12.1668,
+            "h": 0.9041
+          },
+          "style": {
+            "fontSizePt": 42,
+            "font": "Microsoft YaHei",
+            "color": "#1f4e79",
+            "bold": true,
+            "lineSpacing": 1.25,
+            "spaceBeforeIn": 0,
+            "spaceAfterIn": 0.2042
+          },
+          "runs": [
+            {
+              "text": "五、思考题"
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "geo": {
+            "x": 0.5833,
+            "y": 2.4109,
+            "w": 12.1668,
+            "h": 3.7426
+          },
+          "style": {
+            "fontSizePt": 21,
+            "font": "Microsoft YaHei",
+            "color": "#23303f",
+            "lineSpacing": 1.55,
+            "spaceBeforeIn": 0.0729,
+            "spaceAfterIn": 0
+          },
+          "items": [
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "把 "
+                },
+                {
+                  "text": "ComputerReducer",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 里的 "
+                },
+                {
+                  "text": "ips.add(c.getIp())",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 改成把 "
+                },
+                {
+                  "text": "c",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 存进 "
+                },
+                {
+                  "text": "ArrayList",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": "、循环结束后再取 IP，会发生什么？为什么？（提示：4-3-5 篇 5.9 节）"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0438,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "若给 "
+                },
+                {
+                  "text": "ComputerWritable",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 加一个 "
+                },
+                {
+                  "text": "mem",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": "（内存大小，double）字段，旧的 "
+                },
+                {
+                  "text": "computer.bin",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 还能读回来吗？会报什么错？"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "本实验为什么把 "
+                },
+                {
+                  "text": "hostname",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 作为 map 输出的 key？如果想统计「每个 IP 的上报次数」，代码要改哪几行？"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            },
+            {
+              "level": 0,
+              "runs": [
+                {
+                  "text": "如果只是统计每台机器的上报次数（不需要 IP），value 用 "
+                },
+                {
+                  "text": "IntWritable(1)",
+                  "style": {
+                    "color": "#b3401f",
+                    "font": "Cascadia Mono"
+                  }
+                },
+                {
+                  "text": " 就够了。对比两种写法，说说什么时候才值得自定义 Writable。"
+                }
+              ],
+              "style": {
+                "fontSizePt": 21,
+                "font": "Microsoft YaHei",
+                "color": "#23303f",
+                "lineSpacing": 1.5,
+                "spaceBeforeIn": 0.0729,
+                "spaceAfterIn": 0.0438
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "media": {
+    "dir": "media",
+    "warnings": []
+  }
+}

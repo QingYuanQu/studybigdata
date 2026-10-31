@@ -1,0 +1,13 @@
+digraph zab {
+    graph [fontname="Microsoft YaHei", label="ZAB 崩溃恢复四阶段", fontsize=16, rankdir=LR];
+    node [fontname="Microsoft YaHei", shape=box, style="rounded,filled", fillcolor="#EAF2F8"];
+    edge [fontname="Microsoft YaHei"];
+
+    E [label="① 选举 Election\n选出候选 Leader"];
+    D [label="② 发现 Discovery\n收集 epoch 与最新事务"];
+    Sy [label="③ 同步 Synchronization\n补齐缺失事务，全员对齐"];
+    B [label="④ 广播 Broadcast\n正常处理写请求"];
+
+    E -> D -> Sy -> B;
+    B -> E [style=dashed, label="Leader 失效"];
+}

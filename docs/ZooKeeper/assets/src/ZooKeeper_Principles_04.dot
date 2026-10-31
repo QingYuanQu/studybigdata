@@ -1,0 +1,15 @@
+digraph ZooKeeper_Principles_04 {
+  graph [fontname="Microsoft YaHei", ranksep=0.6, nodesep=0.45, rankdir=TB, bgcolor="transparent"]
+  node  [fontname="Microsoft YaHei", fontsize=13, margin="0.16,0.09", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  edge  [color="#888780", fontname="Microsoft YaHei", fontsize=11, fontcolor="#5F5E5A", arrowsize=0.7]
+  1 [label="zxid=0", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  2 [label="zxid=0", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  3 [label="zxid=0", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  广播投票 [label="myid, zxid", shape=box, style="rounded,filled", fillcolor="#E1F5EE", color="#0F6E56", fontcolor="#085041"]
+  S1 [label="S1", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  S2 [label="S2", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  S3 [label="S3", shape=box, style="rounded,filled", fillcolor="#EEEDFE", color="#534AB7", fontcolor="#3C3489"]
+  S1 -> S1
+  S2 -> S2
+  S3 -> S3
+}

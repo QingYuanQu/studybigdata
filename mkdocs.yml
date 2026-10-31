@@ -1,0 +1,97 @@
+# ============================================================
+# 笔记站配置 - MkDocs Material
+# 文档源 = 仓库根目录本身；此为 MkDocs 官方推荐的单仓库文档布局
+# ============================================================
+
+site_name: 大数据笔记
+site_description: Hadoop / Spark / Hive / Flink / 数据仓库 全栈学习手册
+site_author: Yuan
+site_url: https://www.studybigdata.com/
+
+repo_url: https://github.com/qingyuanqu/studybigdata
+repo_name: GitHub
+
+docs_dir: docs
+site_dir: _site
+
+# ---------- 排除非笔记内容（配合 .gitignore） ----------
+exclude_docs: |
+  **/export/**
+  **/.export/**
+  img_bak/
+  **/*.pptx
+  **/*.docx
+  **/*.vsdx
+
+# ---------- 主题 ----------
+theme:
+  name: material
+  language: zh
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant          # 站内秒开，无需整页刷新
+    - navigation.tracking         # 滚动时高亮当前位置
+    - navigation.tabs             # 顶层做标签页（章节多时好用）
+    - navigation.tabs.sticky
+    - navigation.top              # 回到顶部
+    - navigation.indexes          # 目录可点击作为索引页
+    - navigation.footer
+    - search.suggest              # 搜索补全
+    - search.highlight
+    - search.share
+    - content.code.copy           # 代码块一键复制
+    - content.code.annotate
+    - content.action.edit         # 页脚“在 GitHub 编辑”按钮
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到浅色模式
+
+# ---------- Markdown 扩展 ----------
+markdown_extensions:
+  - admonition          # !!! note / !!! warning 提示块
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.details
+  - pymdownx.keys
+
+# ---------- 插件 ----------
+plugins:
+  - search:
+      lang: zh             # 中文分词（依赖 jieba，见 requirements.txt）
+      separator: '[\s\-\.,:!=\[\]()"/]+'
+
+extra:
+  generator: false

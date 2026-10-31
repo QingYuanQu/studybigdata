@@ -1,0 +1,245 @@
+代码2-1  ifcfg-eth0文件修改的内容
+DEVICE=eth0
+TYPE=Ethernet
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=static
+IPADDR=192.168.128.130
+NETMASK=255.255.255.0
+GATEWAY=192.168.128.2
+DNS1=192.168.128.2
+
+
+代码2-2  修改repo配置文件
+mv  CentOS-Base.repo  CentOS-Base.repo.bak
+mv  CentOS-Debuginfo.repo  CentOS-Debuginfo.repo.bak
+mv  CentOS-fasttrack.repo  CentOS-fasttrack.repo.bak
+mv  CentOS-Vault.repo  CentOS-Vault.repo.bak 
+ll
+
+
+代码2-3  修改后的CentOS-Media.repo文件
+[c6-media]
+name=CentOS-$releasever - Media
+baseurl=file:///media/
+gpgcheck=0
+enabled=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+
+代码2-4  在/etc/profile文件中添加环境变量
+export  JAVA_HOME=/usr/java/jdk1.8.0_221-amd64
+export  PATH=$PATH:$JAVA_HOME/bin
+
+
+代码2-5  /etc/hosts文件配置IP地址映射
+192.168.128.130  master
+192.168.128.131  slave1
+192.168.128.132  slave2
+192.168.128.133  slave3
+
+
+代码2-6  复制公钥到各主机的命令
+ssh-copy-id -i  /root/.ssh/id_rsa.pub  master   //依次输入yes，123456（root用户的登录密码）
+ssh-copy-id -i  /root/.ssh/id_rsa.pub  slave1
+ssh-copy-id -i  /root/.ssh/id_rsa.pub  slave2
+ssh-copy-id -i  /root/.ssh/id_rsa.pub  slave3
+
+
+代码2-7  为主机master配置NTP服务
+restrict  192.168.128.2  mask  255.255.255.0  nomodify  notrap
+server  127.127.1.0
+fudge  127.127.1.0  stratum  10
+
+
+代码2-8  为主机slaveX配置NTP服务
+server  master
+
+
+代码2-9  core-site.xml配置内容
+<configuration>
+     <property>
+             <name>fs.defaultFS</name>
+             <value>hdfs://master:9820</value>       ##（旧端口：8020）
+     </property>
+     <property>
+             <name>hadoop.tmp.dir</name>
+             <value>/var/log/hadoop/tmp</value>
+             <description>Abase for other temporary directories.</description>
+     </property>
+</configuration>
+
+
+代码2-10  hadoop-env.sh配置内容
+export JAVA_HOME=/usr/java/jdk1.8.0_221-amd64  #目录依据安装版本不同而有所不同
+
+
+代码2-11  hdfs-site.xml配置内容
+<configuration>
+<property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:///data/hadoop/hdfs/name</value>
+</property>
+<property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///data/hadoop/hdfs/data</value>
+</property>
+<property>
+     <name>dfs.namenode.secondary.http-address</name>
+     <value>master:9868</value>     ##（旧端口：50090）
+</property>
+<property>
+     <name>dfs.replication</name>
+     <value>3</value>
+</property>
+</configuration>
+
+
+代码2-12  mapred-site.xml配置内容
+<configuration>
+<property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+</property>
+<!-- jobhistory properties -->
+<property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>master:10020</value>
+</property>
+<property>
+     <name>mapreduce.jobhistory.webapp.address</name>
+     <value>master:19888</value>
+</property>
+</configuration>
+
+
+代码2-13  yarn-site.xml配置内容
+<configuration>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>master</value>
+  </property>    
+  <property>
+    <name>yarn.resourcemanager.address</name>
+    <value>${yarn.resourcemanager.hostname}:8032</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.scheduler.address</name>
+    <value>${yarn.resourcemanager.hostname}:8030</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.address</name>
+    <value>${yarn.resourcemanager.hostname}:8088</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.https.address</name>
+    <value>${yarn.resourcemanager.hostname}:8090</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.resource-tracker.address</name>
+    <value>${yarn.resourcemanager.hostname}:8031</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.admin.address</name>
+    <value>${yarn.resourcemanager.hostname}:8033</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.local-dirs</name>
+    <value>/data/hadoop/yarn/local</value>
+  </property>
+  <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.remote-app-log-dir</name>
+    <value>/data/tmp/logs</value>
+  </property>
+<property> 
+ <name>yarn.log.server.url</name> 
+ <value>http://master:19888/jobhistory/logs/</value>
+ <description>URL for job history server</description>
+</property>
+<property>
+   <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+  </property>
+ <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+      <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+      </property>
+<property>  
+        <name>yarn.nodemanager.resource.memory-mb</name>  
+        <value>2048</value>  
+ </property>  
+ <property>  
+        <name>yarn.scheduler.minimum-allocation-mb</name>  
+        <value>512</value>  
+ </property>   
+ <property>  
+        <name>yarn.scheduler.maximum-allocation-mb</name>  
+        <value>4096</value>  
+ </property> 
+ <property> 
+    <name>mapreduce.map.memory.mb</name> 
+    <value>2048</value> 
+ </property> 
+ <property> 
+    <name>mapreduce.reduce.memory.mb</name> 
+    <value>2048</value> 
+ </property> 
+ <property> 
+    <name>yarn.nodemanager.resource.cpu-vcores</name> 
+    <value>1</value> 
+ </property>
+ <property>
+        <name>yarn.application.classpath</name>
+        <value>/usr/local/hadoop-3.1.4/etc/hadoop:/usr/local/hadoop-3.1.4/share/hadoop/common/lib/*:/usr/local/hadoop-3.1.4/share/hadoop/common/*:/usr/local/hadoop-3.1.4/share/hadoop/hdfs:/usr/local/hadoop-3.1.4/share/hadoop/hdfs/lib/*:/usr/local/hadoop-3.1.4/share/hadoop/hdfs/*:/usr/local/hadoop-3.1.4/share/hadoop/mapreduce/lib/*:/usr/local/hadoop-3.1.4/share/hadoop/mapreduce/*:/usr/local/hadoop-3.1.4/share/hadoop/yarn:/usr/local/hadoop-3.1.4/share/hadoop/yarn/lib/*:/usr/local/hadoop-3.1.4/share/hadoop/yarn/*</value>
+</property>
+</configuration>
+
+
+代码2-14  yarn-env.sh配置内容
+export JAVA_HOME=/usr/java/jdk1.8.0_221-amd64
+
+
+代码2-15  workers配置内容
+slave1
+slave2
+slave3
+
+
+代码2-16  分发安装文件至Slave主机命令
+scp -r /usr/local/hadoop-3.1.4 slave1:/usr/local
+scp -r /usr/local/hadoop-3.1.4 slave2:/usr/local
+scp -r /usr/local/hadoop-3.1.4 slave3:/usr/local
+
+
+代码2-17  配置profile文件内容
+export HADOOP_HOME=/usr/local/hadoop-3.1.4
+export PATH=$HADOOP_HOME/bin:$PATH
+export HDFS_NAMENODE_USER=root
+export HDFS_DATANODE_USER=root
+export HDFS_JOURNALNODE_USER=root
+export HDFS_SECONDARYNAMENODE_USER=root
+export YARN_RESOURCEMANAGER_USER=root
+export YARN_NODEMANAGER_USER=root
+
+
+代码2-18  启动Hadoop集群
+./start-dfs.sh
+./start-yarn.sh
+./mr-jobhistory-daemon.sh start historyserver
+
+
+代码2-19  hosts文件配置内容
+192.168.128.130 master master.centos.com
+192.168.128.131 slave1 slave1.centos.com
+192.168.128.132 slave2 slave2.centos.com
+192.168.128.133 slave3 slave3.centos.com
+
+

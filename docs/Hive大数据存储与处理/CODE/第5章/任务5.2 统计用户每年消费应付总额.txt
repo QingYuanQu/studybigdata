@@ -1,0 +1,10 @@
+代码5-6 统计用户每年消费应付总额
+SELECT phone_no,SUBSTR(year_month,1,4),SUM(should_pay)
+FROM mmconsume_billevents
+GROUP BY phone_no,SUBSTR(year_month,1,4);
+
+代码5-7 查询5356294用户的所有订单信息
+SELECT phone_no,year_month,should_pay
+FROM mmconsume_billevents
+WHERE phone_no = '5356294';
+

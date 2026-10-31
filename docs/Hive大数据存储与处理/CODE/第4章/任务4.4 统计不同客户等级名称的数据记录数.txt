@@ -1,0 +1,24 @@
+代码4-16 设置查询结果开启列名显示
+set hive.cli.print.header = true;
+
+代码4-17 设置查询结果的列名不显示表名
+set hive.resultset.use.unique.column.names=false;
+
+代码4-18 hive-site.xml文件修改内容
+<property>
+	<name>hive.cli.print.header</name>
+                <value>true</value>
+</property>
+<property>
+	   <name>hive.resultset.use.unique.column.names</name>
+	   <value>false</value>
+</property>
+
+代码4-19 使用中文作为列别名
+SELECT sm_name `品牌名称` FROM mediamatch_usermsg LIMIT 1;
+
+代码4-20 统计不同客户等级名称的数据记录数
+SELECT owner_name `客户等级名称`, COUNT(*) AS `记录数`
+ FROM mediamatch_usermsg
+ GROUP BY owner_name;
+

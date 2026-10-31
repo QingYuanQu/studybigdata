@@ -1,0 +1,28 @@
+代码4-27 LIMIT关键字使用示例
+SELECT * 
+FROM  mediamatch_usermsg
+LIMIT 2;
+
+代码4-28 查询mediamatch_usermsg表第3条数据开始的2条信息
+SELECT * 
+FROM  mediamatch_usermsg
+LIMIT 2,2;
+
+代码4-29 DISTRIBUTE BY关键字结合SORT BY关键字使用示例
+SELECT phone_no,run_name FROM  mediamatch_usermsg 
+WHERE sm_name='甜果电视' 
+DISTRIBUTE BY run_name 
+SORT BY run_name;
+
+代码4-30 CLUSTER BY关键字使用示例
+SELECT phone_no,run_name FROM  mediamatch_usermsg
+WHERE sm_name='甜果电视'
+CLUSTER BY run_name;
+
+代码4-31 统计用户人数最多的3中用户状态
+SELECT COUNT(*) as nums, run_name 
+FROM  mediamatch_usermsg
+GROUP BY run_name
+ORDER BY nums DESC
+LIMIT 3;
+

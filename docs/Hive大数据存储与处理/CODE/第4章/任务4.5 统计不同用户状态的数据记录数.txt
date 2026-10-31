@@ -1,0 +1,19 @@
+代码4-21 GROUP BY关键字错误使用
+SELECT phone_no, run_name, sm_name 
+FROM  mediamatch_usermsg
+GROUP BY run_name, sm_name;
+
+代码4-22 GROUP BY关键字使用示例
+SELECT run_name, sm_name 
+FROM  mediamatch_usermsg
+GROUP BY run_name, sm_name;
+
+代码4-23 GROUP BY关键字使用示例2
+SELECT COUNT(phone_no), run_name, sm_name 
+FROM  mediamatch_usermsg
+GROUP BY run_name, sm_name;
+
+代码4-24 统计不同用户状态的数据记录数
+SELECT COUNT(*), run_name 
+FROM  mediamatch_usermsg
+GROUP BY run_name;

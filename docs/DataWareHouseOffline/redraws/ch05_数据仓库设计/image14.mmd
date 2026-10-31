@@ -1,0 +1,7 @@
+<!-- why: 图是交易业务流程（试听→下单→支付），EMF 文本含 order_info / order_detail / payment_info 三张表及"新增订单/明细/支付记录、状态变已支付"等落库动作；选 mermaid flowchart 表达主流程与数据落地动作。-->
+flowchart LR
+  用户 --> 试听
+  试听 --> 下单
+  下单 -->|新增 order_info 订单记录<br/>+ 若干 order_detail 明细记录| 等待用户付款
+  等待用户付款 --> 支付
+  支付 -->|新增 payment_info 支付记录<br/>order_info 状态变"已支付"| 完成

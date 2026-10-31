@@ -1,0 +1,20 @@
+digraph {
+    graph [fontname="Microsoft YaHei", ranksep=0.35, nodesep=0.3];
+    node [fontname="Microsoft YaHei", shape="box", style="rounded,filled"];
+    edge [fontname="Microsoft YaHei"];
+    disk [label="块设备（磁盘）\n按 4KB 块寻址", fillcolor="#E8F5E9"];
+    dentry [label="目录项 dentry\n（记录 文件名 → inode 号）", fillcolor="#FFF3E0"];
+    fname [label="\"report.txt\"\n（文件名在目录里，不在 inode 中）", fillcolor="#FFF3E0"];
+    inode [label="inode #1024\n权限 / 大小 / 时间戳\n数据块指针（不含文件名与内容）", fillcolor="#E3F2FD"];
+    b0 [label="数据块 A\n（文件内容片段）", fillcolor="#E8F5E9"];
+    b1 [label="数据块 B\n（文件内容片段）", fillcolor="#E8F5E9"];
+    ind [label="间接块", fillcolor="#E8F5E9"];
+    bk [label="数据块 K …\n（文件内容片段）", fillcolor="#E8F5E9"];
+    disk -> dentry;
+    dentry -> fname [label="一条记录"];
+    fname -> inode [label="文件名 → inode 号"];
+    inode -> b0 [label="直接指针"];
+    inode -> b1 [label="直接指针"];
+    inode -> ind [label="间接指针"];
+    ind -> bk;
+}

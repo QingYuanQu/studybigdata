@@ -1,0 +1,10 @@
+<!-- why: 图是数仓分层架构（ODS→DWD→DWS→ADS 四层 + DIM 公共维度层），EMF 矢量文本已确认四层名称与各自职责描述；选 mermaid flowchart 表达分层流向，DIM 作为横向下层旁路。-->
+flowchart TB
+  ODS["ODS 原始数据层<br/>存放未经过处理的原始数据，结构与源系统一致，是数据准备区"]
+  DWD["DWD 明细数据层<br/>基于维度建模理论构建，存放事实表与维度表"]
+  DWS["DWS 汇总数据层<br/>按上层指标需求，以分析主题对象为驱动，构建公共统计粒度汇总表"]
+  ADS["ADS 数据应用层<br/>存放各项统计指标结果"]
+  DIM["DIM 公共维度层<br/>保存一致性维度信息"]
+  ODS --> DWD --> DWS --> ADS
+  DIM -.-> DWD
+  DIM -.-> DWS
