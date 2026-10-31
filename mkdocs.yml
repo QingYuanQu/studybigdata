@@ -59,6 +59,10 @@ theme:
         icon: material/weather-sunny
         name: 切换到浅色模式
 
+# ---------- 自定义样式（顶栏正红背景等） ----------
+extra_css:
+  - overrides/extra.css
+
 # ---------- Markdown 扩展 ----------
 markdown_extensions:
   - admonition          # !!! note / !!! warning 提示块

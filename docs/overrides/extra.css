@@ -1,0 +1,24 @@
+/* ============================================================
+   顶栏样式：正红背景 + 白色文字
+   仅作用于 .md-header，不影响全站 blue-grey/teal 主色
+   ============================================================ */
+
+/* ----- 顶栏底色与默认文字色 ----- */
+.md-header {
+  background-color: #e60012;   /* 正红 */
+  color: #ffffff;
+}
+
+/* ----- 顶栏内所有元素（站点标题 / 汉堡菜单 / 搜索 / 仓库按钮）统一白色 ----- */
+.md-header .md-header__title,
+.md-header .md-header__button,
+.md-header .md-header__source,
+.md-header a {
+  color: #ffffff;
+}
+
+/* ----- hover 时给一点反馈（略亮的红） ----- */
+.md-header .md-header__button:hover,
+.md-header a:hover {
+  color: #ffe5e5;
+}
