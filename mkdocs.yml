@@ -29,11 +29,11 @@ theme:
   language: zh
   icon:
     repo: fontawesome/brands/github
-  custom_dir: docs/overrides        # 自定义覆盖：隐藏 header + 侧边栏注入
   features:
     - navigation.instant          # 站内秒开，无需整页刷新
     - navigation.tracking         # 滚动时高亮当前位置
     - navigation.top              # 回到顶部
+    - header.autohide             # 下滚隐藏顶栏、上滚出现（手机端汉堡菜单不丢）
     - navigation.indexes          # 目录可点击作为索引页
     - navigation.footer
     - search.suggest              # 搜索补全
@@ -58,10 +58,6 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: 切换到浅色模式
-
-# ---------- 自定义样式（隐藏 header 等） ----------
-extra_css:
-  - overrides/extra.css
 
 # ---------- Markdown 扩展 ----------
 markdown_extensions:
